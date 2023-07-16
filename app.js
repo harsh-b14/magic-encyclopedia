@@ -1,11 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+// const popupS = require("popups");
 
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
-// app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 main().catch(err => console.log(err));
@@ -18,10 +19,11 @@ async function main() {
 const signupSchema = new mongoose.Schema({
     name : String,
     email: String,
+    username: String,
     password: String,
   });
   
-const loginDetails = new mongoose.model("loginDetails", signupSchema);
+const LoginDetail = new mongoose.model("LoginDetail", signupSchema);
 
 app.get("/", function(req, res){
     res.sendFile(__dirname + "/index.html");
@@ -34,11 +36,13 @@ app.post("/", function(req, res){
 app.post("/signup", function(req, res){
     const name = req.body.personName;
     const email = req.body.email;
+    const username = req.body.username;
     const password = req.body.password;
 
-    const details = new loginDetails({
+    const details = new LoginDetail({
         name: name,
         email: email,
+        username: username,
         password: password
       });
 
@@ -47,14 +51,23 @@ app.post("/signup", function(req, res){
 
 app.post("/login", function(req, res){
     const email = req.body.email;
+    const username = req.body.username;
     const password = req.body.password;
+<<<<<<< HEAD
     loginDetails.findOne({email: email, password: password}).then(function(err){
         if(!err){
             // document.querySelector("button").innerHTML = "qwe";
             res.redirect("/");
+=======
+    LoginDetail.findOne({email: email, username: username, password: password}).then(function(foundItem){
+        // console.log(foundItem.username);
+        // console.log(foundItem.name);
+        if(foundItem === null){
+            res.send("<script>alert('Somthing went wring'); window.location.href ='./login.html' </script>");
+>>>>>>> 9fae508efdcf1294bc2750395226e1409705ab78
         }
         else{
-            console.log(err);
+            res.render("home", {btnValue: foundItem.username});
         }
     });
 });
