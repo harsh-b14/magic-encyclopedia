@@ -26,10 +26,15 @@ const signupSchema = new mongoose.Schema({
 const LoginDetail = new mongoose.model("LoginDetail", signupSchema);
 
 app.get("/", function(req, res){
-    res.sendFile(__dirname + "/index.html");
+    // res.sendFile(__dirname + "/index.html");
+    res.render("home", {btnValue: "Login"});
 });
 
-app.post("/", function(req, res){
+// app.get("/signup", function(req, res){
+//     res.sendFile(__dirname + "/login.html");
+// });
+
+app.post("/", function(req, res){   
     res.sendFile(__dirname + "/login.html");
 });
 
@@ -46,7 +51,26 @@ app.post("/signup", function(req, res){
         password: password
       });
 
+    LoginDetail.find({email: email, username: username}).then(function(foundItem){
+        if(!foundItem){
+            res.render("home", {btnValue: details.username});
+        }
+        else{
+            res.send("<script>alert('Username or e-mail already in use!<br>Try using another!');window.location = '/';</script>");
+        }
+    });
+    // LoginDetail.find({username: username}).then(function(foundItem){
+    //     if(!foundItem){
+    //         res.render("home", {btnValue: details.username});
+    //     }
+    //     else{
+    //         res.send("<script>alert('message');window.location = '/';</script>");
+    //     }
+    // });
+
     details.save();
+
+    // res.render("home", {btnValue: details.username});
 });
 
 app.post("/login", function(req, res){
@@ -54,10 +78,8 @@ app.post("/login", function(req, res){
     const username = req.body.username;
     const password = req.body.password;
     LoginDetail.findOne({email: email, username: username, password: password}).then(function(foundItem){
-        // console.log(foundItem.username);
-        // console.log(foundItem.name);
         if(foundItem === null){
-            res.send("<script>alert('Somthing went wring'); window.location.href ='./login.html' </script>");
+            res.send("<script>alert('You may have entered wrong credentials!<br>Please check it try again..');window.location = '/';</script>");
         }
         else{
             res.render("home", {btnValue: foundItem.username});
