@@ -50,7 +50,7 @@ app.post("/login", function(req, res){
     const password = req.body.password;
     loginDetails.findOne({email: email, password: password}).then(function(err){
         if(!err){
-            document.querySelector("button").innerHTML = "qwe";
+            // document.querySelector("button").innerHTML = "qwe";
             res.redirect("/");
         }
         else{
