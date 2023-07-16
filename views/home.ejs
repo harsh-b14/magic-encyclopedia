@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="css/creature.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +36,7 @@
 </head>
 
 <body>       
-    <div class="container1">
+    <div class="container1"  id="header" >
         <div class="background">
         
             <div class="container1" >
@@ -48,10 +49,10 @@
                 </a>
         
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                  <li><a href="#" class="nav-link first px-2 text-white ml-3">Home</a></li>
-                  <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                  <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                  <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                  <li><a href="#header" class="nav-link first px-2 text-white ml-3">Home</a></li>
+                  <li><a href="#Characters" class="nav-link px-2 text-white">Characters</a></li>
+                  <li><a href="#Hogwarts" class="nav-link px-2 text-white">Houses</a></li>
+                  <li><a href="#Creature" class="nav-link px-2 text-white">Creatures</a></li>
                   <li><a href="#" class="nav-link px-2 text-white">About</a></li>
                 </ul>
                
@@ -73,10 +74,11 @@
             </div>    
         </div>
    
+        
     
-    <div class="container" style="width:100%">
-    <div class="header" >
-        <h1 style="font-family: 'Sacramento';font-size: 50px;color:antiquewhite">Responsive Image Grid</h1>
+    <div class="container" id="Characters"style="width:100%">
+    <div class="header">
+        <h1 style="font-family: 'Sacramento';font-size: 80px;color:rgb(255, 255, 255);font-weight:400">Characters</h1>
     </div>
 
     <!-- Photo Grid -->
@@ -105,7 +107,7 @@
                 <img src="images/flying_harry.webp" style="width:100%" alt="">
             </div>
             <div class="img-hover-zoom">
-                <img src=images/Argus Filch (2).jpg" style="width:100%" alt="">
+                <img src="images/Argus Filch (2).jpg" style="width:100%" alt="">
             </div>
             <div class="img-hover-zoom">
                 <img src="images/Gryffindor.png" style="width:100%" alt="">
@@ -141,9 +143,9 @@
         </div>
 
     </div>
-    <div class=" house">
+    <div class=" house" id="Hogwarts">
         <div class="outer-house-description" style="width:100%;text-align:center">
-            <div><h1 class="house-name">Hogwarts House Hub</h1> </div>
+            <div><h1 class="house-name" >Hogwarts House Hub</h1> </div>
              <div class="house-description" style="text-align:center; padding-bottom:25px">
                 These four houses form an integral part of the Hogwarts School of Witchcraft and Wizardry, where students are sorted into their respective houses based on their traits and characteristics during the Sorting Ceremony at the beginning of each school year. Throughout the year, the houses compete for points, and the house with the most points is awarded the prestigious House Cup.
             </div>
@@ -185,9 +187,143 @@
             </div>
         </div>     
     </div>
-</div>
-</div>     
-<script src="./app.js" charset="utf-8"></script>
+    </div>
+    <!-- Adding creature list of hogwart lagacy -->
+    <div class="header">
+        <h1 class="Creature" id="Creature" style="font-family: 'Sacramento';font-size: 80px;color:rgb(255, 255, 255);padding-bottom:0%">Magical Creature</h1> </div>
+
+    <div class="media-container" style="display: flex; ">
+        <div class="media-scroller">
+          <!--   Group 1 -->
+          <div class="media-group" id="group-1">
+            <!-- <a class="previous" href="#group-4">
+                <svg>
+                    <use href="#previous"></use>
+                  </svg>
+              </a> -->
+            <div class="media-element">
+              <img src="./images/Albus Dumbledore (2).jpg" alt="" />
+            </div>
+            <div class="media-element">
+              <img src="./images/Gryffindor.png" alt="" />
+            </div>
+            <div class="media-element">
+              <img src="./images/flying_harry.webp" alt=""/>
+            </div>
+            
+            <!-- <a class="next" href="#group-2" aria-label="next">
+              <svg>
+                <use href="#next"></use>
+              </svg>
+            </a> -->
+          </div>
+          <!-- Group 2   -->
+          <div class="media-group" id="group-2">
+            <!-- <a class="previous" href="#group-1">
+              <svg>
+                <use href="#previous"></use>
+              </svg>
+            </a> -->
+            <div class="media-element">
+              <img src="./images/harry_family.avif" alt="" />
+            </div>
+            <div class="media-element">
+              <img src="./images/horror_city.jpg" alt="" />
+            </div>
+            <div class="media-element">
+              <img src="./images/Hogwarts Parallax.png" alt=""/>
+            </div>
+           
+            <!-- <a class="next" href="#group-3" aria-label="next">
+              <svg>
+                <use href="#next"></use>
+              </svg>
+            </a> -->
+          </div>
+          <!-- Group 3   -->
+          <div class="media-group" id="group-3">
+            <!-- <a class="previous" href="#group-2">
+                <svg>
+                    <use href="#previous"></use>
+                  </svg>
+                </a> -->
+                <div class="media-element">
+                  <img src="./images/Professor Aurora Sinistra.jpg" alt="" />
+                </div>
+                <div class="media-element">
+                  <img src="./images/landing page.jpg" alt="" />
+                </div>
+                <div class="media-element">
+                  <img src="./images/Ronald Bilius.jpg" alt=""/>
+                </div>
+                
+                <!-- <a class="next" href="#group-4" aria-label="next">
+                  <svg>
+                    <use href="#next"></use>
+                  </svg>
+                </a> -->
+              </div>
+              <!--  Group 4  -->
+              <div class="media-group" id="group-4">
+                <!-- <a class="previous" href="#group-3">
+                  <svg>
+                    <use href="#previous"></use>
+                  </svg>
+                </a> -->
+               <div class="media-element">
+                  <img src="./images/Argus Filch.jpg" alt="" />
+                </div>
+                <div class="media-element">
+                  <img src="./images/harry_family.avif" alt="" />
+                </div>
+                <div class="media-element">
+                  <img src="./images/Professor Aurora Sinistra (2).jpg" alt=""/>
+                </div>
+                <!-- <a class="next" href="#group-1" aria-label="next">
+                    <svg>
+                      <use href="#next"></use>
+                    </svg>
+                  </a> -->
+              </div>
+             
+          </div>
+
+          <svg>
+            <symbol id="next" viewBox="0 0 256 512">
+              <path fill="white"
+                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z" />
+            </symbol>
+            <symbol id="previous" viewBox="0 0 256 512">
+              <path fill="white"
+                d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z" />
+            </symbol>
+          </svg>  
+          </div>  
+
+    
+</div>   
+<script>
+    let scrollContainer = document.querySelector(".media-scroller");
+    let backBtn = document.getElementById("previous");
+    let nextBtn = document.getElementById("next");
+
+    scrollContainer.addEventListener("wheel", (evt) =>{
+        evt.preventDefault();
+        scrollContainer.scrollLeft += evt.deltaY;
+        scrollContainer.style.scrollBehavior = "auto";
+    })
+    nextBtn.addEventListener("click" ,()=>{
+        scrollContainer.style.scrollBehavior = "smooth";
+        <!-- scrollContainer.scrollLeft += 400; -->
+    })
+    backBtn.addEventListener("click" ,()=>{
+        scrollContainer.style.scrollBehavior = "smooth";
+        scrollContainer.scrollLeft -= 400;;
+    })
+
+</script>  
+
+<!-- <script src="./app.js" charset="utf-8"></script> -->
 </body>
 
 </html>
