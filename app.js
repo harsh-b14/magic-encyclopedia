@@ -76,6 +76,23 @@ app.post("/login", function(req, res){
     });
 });
 
+app.post("/quiz", function(req, res){
+    res.sendFile(__dirname + "/quiz.html");
+});
+
 app.listen(3000, function(){
     console.log("server running on 3000");
 });
+
+
+
+// const sgMail = require('@sendgrid/mail');
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// const msg = {
+//   to: 'test@example.com',
+//   from: 'test@example.com',
+//   subject: 'Sending with Twilio SendGrid is Fun',
+//   text: 'and easy to do anywhere, even with Node.js',
+//   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+// };
+// sgMail.send(msg);

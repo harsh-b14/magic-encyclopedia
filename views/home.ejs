@@ -191,6 +191,7 @@
     <div class="header">
           <h1 class="Creature" id="Creature" style="font-family: 'Sacramento';font-size: 80px;color:rgb(255, 255, 255);padding-bottom:0%">Quiz & Puzzles</h1> </div>
         <div class="container">
+          <form action="/quiz" method="post">
           <button id ="myButton">
             <div class="Frame1">
                
@@ -205,11 +206,12 @@
              
             </div>
         </button>
-        <script type="text/javascript">
+        </form>
+        <!-- <script type="text/javascript">
             document.getElementById("myButton").onclick = function () {
                 location.href = "quiz.html";
             };
-        </script>
+        </script> -->
         </div>
     
     <div class="container" id="Characters"style="width:100%">
@@ -283,7 +285,6 @@
     <div class=" house" id="Hogwarts">
     <div class=" house" id="Hogwarts">
         <div class="outer-house-description" style="width:100%;text-align:center">
-            <div><h1 class="house-name" >Hogwarts House Hub</h1> </div>
             <div><h1 class="house-name" >Hogwarts House Hub</h1> </div>
              <div class="house-description" style="text-align:center; padding-bottom:25px">
                 These four houses form an integral part of the Hogwarts School of Witchcraft and Wizardry, where students are sorted into their respective houses based on their traits and characteristics during the Sorting Ceremony at the beginning of each school year. Throughout the year, the houses compete for points, and the house with the most points is awarded the prestigious House Cup.
