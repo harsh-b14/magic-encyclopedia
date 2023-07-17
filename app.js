@@ -76,6 +76,10 @@ app.post("/login", function(req, res){
     });
 });
 
+app.post("/quiz", function(req, res){
+    res.sendFile(__dirname + "/quiz.html");
+});
+
 app.listen(3000, function(){
     console.log("server running on 3000");
 });
