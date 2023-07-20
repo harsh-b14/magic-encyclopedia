@@ -1,0 +1,102 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
+    
+.container2 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-image: url(../images/smoke-background.webp);
+}
+.left-side {
+  width: 30%;
+  padding-left: 5%;
+}
+.right-side {
+  width: 70%;
+  padding: 10px;
+}
+.images-creature {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.view-more {
+  text-align: center;
+  align-items:center ;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items:center;
+}
+
+ul{
+  list-style: none;
+  line-height: 30px;
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  padding-left: 0 ;
+}
+.li-creature{
+  font-family: 'Vidaloka', serif;
+  font-size: 24px;
+  text-align: -webkit-match-parent;
+}
+.parent-creature{
+  position: relative;
+  top:0;
+  left: 0;
+  margin: 5px;
+ 
+}
+.frame1-creature{
+  position: relative;
+  top: 0;
+  left: 0;
+}
+h1{
+  margin-bottom: 0%;
+  margin-left: 0%;
+}
+.image1-creature{
+  position: absolute;
+  top:26px;
+  left:26px;
+}
+@media screen and (max-width: 768px) {
+  .container2 {
+    flex-direction: column;
+  }
+  .left-side {
+    width: 100%;
+    display: block  ;
+    text-align: center;
+    padding: 0%;
+  }
+  .right-side {
+    width: 100%;
+    display: block;
+  }
+  .images-creature {
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+  }
+  
+  
+  .li-creature{
+    padding: 5px;
+    list-style: none;
+    line-height: normal;
+    color:#ffffff ;
+
+  }
+  .view-more{
+    justify-content: center;
+  }
+  .parent-creature{
+    margin-left: 25%;
+   }
+   
+}
