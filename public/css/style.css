@@ -4,6 +4,18 @@ html{
 .body{
     color: #ccc;
 }
+
+.reveal{
+    position: relative;
+    transform: translateY(120px);
+    opacity: 0;
+    transition: 1s all ease;
+  }
+  
+  .reveal.active{
+    transform: translateY(0);
+    opacity: 1;
+  }
  body{
         background-image: url(../images/1.webp) ;
         background-repeat: no-repeat;
@@ -224,7 +236,25 @@ html{
             flex-direction: column;   
             transition: transform 0.5;
         }
+        .Frame2{
+            width: 230px; 
+            height: 250px;
+            border-radius: 36px;
+            background: url(../images/puzzle.png);
+            background-size: cover;
+            background-position: center;
+            justify-content: center;
+            display: flex;
+            overflow: hidden; 
+            flex-direction: column;   
+            transition: transform 0.5;
+        }
         .Frame1:hover{
+            transform: scale(1.1);
+            cursor: pointer;
+            transition-delay: 1ms;
+        }
+        .Frame2:hover{
             transform: scale(1.1);
             cursor: pointer;
             transition-delay: 1ms;
@@ -253,3 +283,12 @@ html{
             cursor: pointer;
             outline: inherit;
         }
+    
+            .Quiz-title{
+                font-family: 'Vidaloka', serif;
+                font-size: 26px;
+                text-align: -webkit-match-parent;
+                color: #fff;
+            }
+            @import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
+  
