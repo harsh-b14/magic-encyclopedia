@@ -27,7 +27,6 @@
         border-color: none; 
     }
     a:hover{
-        
         color: rgb(255, 255, 255);
     }
  
@@ -54,14 +53,15 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                   <li><a href="#header" class="nav-link first px-2 text-white ml-3">Home</a></li>
                   <li><a href="#Creature" class="nav-link px-2 text-white">Creatures</a></li>
+                  <li><a href="#Quiz-&-Puzzle" class="nav-link px-2 text-white">Quiz & Puzzles</a></li>
                   <li><a href="#Characters" class="nav-link px-2 text-white">Characters</a></li>
                   <li><a href="#Hogwarts" class="nav-link px-2 text-white">Houses</a></li>
-                  <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                  <li><a href="#" class="nav-link px-2 text-white"></a></li>
                 </ul>
-               
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                
+                <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                   <input type="search" class="form-control form-control-dark text-bg-black" placeholder="Search..." aria-label="Search">
-                </form>
+                </form> -->
         
                 <div class="text-end">
                     <form action="/login" method="post">
@@ -85,28 +85,13 @@
         <!--   Group 1 -->
         <div class="media-group" id="group-1">
          
-          <button id="Frame1"> 
+          <form action="/creatures" method="post">
+            <button id="Frame1"> 
               <div class="media-element">
                   <img src="./images/Frame 1.svg" alt="" />
               </div>
           </button>
-          <script type="text/javascript">
-              document.getElementById("Frame1").onclick = function () {
-                  location.href = "index.html";
-              };
-          </script>
-          <button id="Frame2"> 
-              <div class="media-element">
-                  <img src="./images/Frame 2.svg" alt="" />
-              </div>
-          </button>
-          <script type="text/javascript">
-              document.getElementById("Frame2").onclick = function () {
-                  location.href = "index.html";
-              };
-          </script>
-          
-          
+          </form>
           
         </div>
         <!-- Group 2   -->
@@ -299,7 +284,6 @@
         scrollContainer.style.scrollBehavior = "smooth";
         scrollContainer.scrollLeft -= 400;;
     })
-
 </script>  
 
 <!-- <script src="./app.js" charset="utf-8"></script> -->

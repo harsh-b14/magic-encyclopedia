@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const creatures = require("./creatures");
+const _ = require("lodash");
 
 const app = express();
 
@@ -12,7 +14,7 @@ main().catch(err => console.log(err));
  
 async function main() {
   // Use connect method to connect to the server
-  await mongoose.connect("mongodb://127.0.0.1:27017/userCredentialsDetailsDB");
+  await mongoose.connect("mongodb://127.0.0.1:27017/wizardingWorldDB");
 }
 
 const signupSchema = new mongoose.Schema({
@@ -20,13 +22,47 @@ const signupSchema = new mongoose.Schema({
     email: String,
     username: String,
     password: String,
-  });
+});
   
 const LoginDetail = new mongoose.model("LoginDetail", signupSchema);
+
+const creaturesSchema = new mongoose.Schema({
+        name: String,
+        description: String,
+});
+
+const Creature = new mongoose.model("Creature", creaturesSchema);
+
+const favSchema = new mongoose.Schema({
+    name: String,
+    favourites:[creaturesSchema],
+})
+
+const Favourite = new mongoose.model("Favourite", favSchema);
 
 app.get("/", function(req, res){
     // res.sendFile(__dirname + "/index.html");
     res.render("home", {btnValue: "Login"});
+});
+
+app.get("/creatures", function(req, res){
+    Creature.find({}).then(function(foundItem){
+        if(foundItem.length == 0){
+            Creature.insertMany(creatures).then(function(err){
+                if(!err){
+                        console.log("Done");
+                    }
+                else{
+                    console.log(err);
+                }
+            });
+            res.redirect("/creatures");
+        }
+        else{
+            console.log(foundItem.length);
+            res.render("creature", {creatureList: creatures});
+        }
+    });
 });
 
 app.get("/:userName", function(req, res){
@@ -81,14 +117,33 @@ app.post("/", function(req, res){
                 details.save();
             }
             else{
-            res.send("<script>alert('Username or e-mail already in use! Try using another!');window.location = '/';</script>");
+                res.send("<script>alert('Username or e-mail already in use! Try using another!');window.location = '/';</script>");
             }
         });
     }
 });
 
+app.post("/creatures",function(req,res){
+    res.redirect("/creatures");
+});
+
 app.post("/quiz", function(req, res){
     res.sendFile(__dirname + "/quiz.html");
+});
+
+app.post("/xyz", function(req, res){
+    const creatureName = _.capitalize(req.body.creatureName);
+    Creature.findOne({name: creatureName}).then(function(foundItem){
+        res.render("creatureName", {creatureName: creatureName, description: foundItem.description});
+    });
+});
+
+app.post("/favs", function(req, res){
+    const checkItemId = req.body.checkbox;
+    const btnValue = req.body.btnValue;
+    console.log(btnValue);
+    console.log(checkItemId);
+    
 });
 
 app.post("/exitQuiz", function(req, res){

@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= creatureName %></title>
+    <title>Creature-list</title>
 </head>
 <body>
-    <h1><%= creatureName %></h1>
-    <p><<%= description %>/p>
+    <form action="/xyz" method="post">
+        <input type="search" name="creatureName">
+        <button type="submit">Search</button>
+    </form>
+    <% creatureList.forEach(item => { %>
+        <form action="/favs" method="post">
+            <input type="checkbox" name="checkbox" value="<%= item.name %>" onChange="this.form.submit()"></input>
+            <h1><%= item.name %></h1>
+            <p><%= item.description %></p>
+        </form>
+    <% }) %>
 </body>
 </html>
