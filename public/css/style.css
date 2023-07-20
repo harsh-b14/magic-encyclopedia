@@ -7,7 +7,7 @@ html{
 
 .reveal{
     position: relative;
-    transform: translateY(120px);
+    transform: translateY(150px);
     opacity: 0;
     transition: 1s all ease;
   }

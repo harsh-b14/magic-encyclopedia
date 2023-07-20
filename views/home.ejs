@@ -27,6 +27,7 @@
         border-color: none; 
     }
     a:hover{
+        
         color: rgb(255, 255, 255);
     }
  
@@ -40,7 +41,7 @@
    
         <div class="background ">
         
-            <div class="container1" >
+            <div class="container1" id="header">
             <div class="header-background">           
         <header class="p-3 text-bg-dark-opacity-0 mb-2 "   >
             
@@ -52,19 +53,19 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                   <li><a href="#header" class="nav-link first px-2 text-white ml-3">Home</a></li>
                   <li><a href="#Creature" class="nav-link px-2 text-white">Creatures</a></li>
-                  <li><a href="#Quiz-&-Puzzle" class="nav-link px-2 text-white">Quiz & Puzzles</a></li>
+                  <li><a href="#Quiz-&-Puzzle" class="nav-link px-2 text-white">Quiz & Puzzle</a></li>
                   <li><a href="#Characters" class="nav-link px-2 text-white">Characters</a></li>
-                  <li><a href="#Hogwarts" class="nav-link px-2 text-white">Houses</a></li>
-                  <li><a href="#" class="nav-link px-2 text-white"></a></li>
+                  <li><a href="#Hogwart's-Houses" class="nav-link px-2 text-white">Houses</a></li>
+                  <li><a href="#" class="nav-link px-2 text-white">About</a></li>
                 </ul>
-                
-                <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+               
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                   <input type="search" class="form-control form-control-dark text-bg-black" placeholder="Search..." aria-label="Search">
-                </form> -->
+                </form>
         
                 <div class="text-end">
-                    <form action="/login" method="post">
-                        <button type="submit" name="button" value="<%= btnValue %>" class="btn btn-warning me-2 "><%= btnValue %></button>
+                    <form action="/" method="post">
+                        <button type="submit" name="button" class="btn btn-warning me-2 "><%= btnValue %></button>
                             <!-- <a href = "login.html" style="color: black;text-decoration:none ">Login</a></button> -->
                     </form>
                   
@@ -76,48 +77,40 @@
             </div>    
         </div>
     <!-- Adding creature list of hogwart lagacy -->
-    <div class="container2 reveal">
-      <div class="left-side reveal" style="color: #f7fbfe;">
-        <div class="header">
-          <h1 style="font-family: 'Sacramento';font-size: 80px;text-align:center;color:rgb(255, 255, 255);font-weight:400">Creature</h1>
-      </div>
-        <ul>
-          <li class="li-creature">Dragon</li>
-          <li class="li-creature">Unicorn</li>
-          <li class="li-creature">Gryffindor</li>
-          <li class="li-creature">Hufflepuff</li>
-          <li class="li-creature">Ravenclaw</li>
-          <li class="li-creature">Ravenclaw</li>
-          <li class="li-creature">Ravenclaw</li>
-          <li class="li-creature">Ravenclaw</li>
-          <li class="li-creature">Ravenclaw</li>
-        </ul>
-      </div>
+    <div class="header" id="Creature">
+        <h1 style="font-family: 'Sacramento';font-size: 80px;text-align:center;color:rgb(255, 255, 255);font-weight:400">Creature</h1>
+    </div>
+    <div class="container2 reveal" >
+     
       <div class="right-side reveal">
         <div class="images-creature">
           <div class="parent-creature">
-            <img class="image1-creature"src="./images/hi.jpg" alt="Dragon" width="255px" height="320px">
-            <img class ="frame1-creature" src="./images/Group 6 1.png" width="305px" >
+            <img class="image1-creature"src="./images/hi.jpg" alt="Dragon" width="233px" height="292px">
+            <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px" >
           </div>
           <div class="parent-creature">
-            <img class="image1-creature"src="./images/hii2.jpg" alt="Dragon" width="255px" height="320px">
-            <img class ="frame1-creature" src="./images/Group 6 1.png" width="305px"  >
+            <img class="image1-creature"src="./images/hii2.jpg" alt="Dragon" width="233px" height="292px">
+            <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px"  >
           </div>
           <div class="parent-creature">
-            <img class="image1-creature"src="./images/hi3.jpg" alt="Dragon" width="255px" height="320px">
-            <img class ="frame1-creature" src="./images/Group 6 1.png" width="305px" >
+            <img class="image1-creature"src="./images/hi3.jpg" alt="Dragon" width="233px" height="292px">
+            <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px" >
           </div>
-          <div class="view-more">
+          <div class="parent-creature">
+            <img class="image1-creature"src="./images/hi3.jpg" alt="Dragon" width="233px" height="292px">
+            <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px" >
+          </div>
+          
+        </div>
+        <div class="view-more">
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFEUlEQVR4nO2abWwURRjHhyAxETXFtwRNfElJtAkvMSZWTdRErWIk1LI7dxXxJX6oBBKN0QTF6rb0bmfurmDQFFMbg7Tc7e4zpQotYoVy2zsbIxEJNRSIYgmYAlELqVpse3dr5updr+ddKblNddr7Jc+Hu9nd2ee/M/+Z3RmE8uTJkyePPXRsr3quE1xHQkwdDIF61tSqm75oUK5DM4GO7e++FmY0FmbUSo2Q4T693//OPWg6YwaqS0KMDKcnnxSBqYNmoPIlNB0Jg3JrCNRfUhM+ffRrKxoZts6cOGR1tdQm/o+ZWnUDAMxG04Vv6yvmhMDdnf7EIyPDVoLf+/usA211ybJO3WWG/W/OQ9MB01+9PlOTP9XzlZXK8MU/rO6gP9UXTnY0Vi5BomMarr3pyXfqNdaO2pXWwfYGKxqNJEWIxaJWb7c5zheCmvIiEhlTd3WlC2AGqizmcVpAsRX0K9bQ4MC41vDz8W/GRAA1FtQ3bLQsNAuJiKlVv5+pC7RtWR0XgEdr3Wrr/LnepACRkaF/HW/qNfuCW5UCJBrtjcpNfMKTnlD7x28kBeDBu8RPh/fHkz/V05VxqOw03CfaG5WFSDS+3LahKASuH1KT2fvJunECJKLZW27t2/ZWRgFGhXv9AlOlx5FotDf65nYartZEIns+ejWjAKPhsHZ/uCbuFam+0bZlzWg5wRGD4HVC+kIIXG+HGYm0bHp+AgHGgnnL45GlXG/0rZqLRKO1fu1yoHL/ZAS4VBgEHwYfvgOJhuZ1FgKVv7dFBIp/1YnjMSQaoOCrgWBmhwgJX0CiYVloFr9xoHLUFiGoHNilLLsKiQaj0pMGwedtag2HNOK8HYkGePCdQOQem8zxnE4cDyHRaFKevRYI3mmTCH+BipciQX2hyiA4ZkN3+K1Fffp6JCKMSKUGwQM2tIT1SFQ06iwCKh/PSQCKg0hkPn2vtAAIPpaDAEeRqADg2UDlTTl2gzASkc88y68xCG7NfUSQ3Ug0wIVvASIftMEABwKe8puRSOjUcR8QfMaGITBiUOxAIgFULgcqX7Qh+UFGZIxm5EsRibeee5EofL556ZVA5abczS4e3c2+FbchUfDXPnODQXDIpuT38HcJJAq627EQqNxrS/JE3sznDEgUdOp4Aii+kPMwR/GIQfBaJBJAcAW/8dyfvNwPBD+CRCGoPHwFEPyBTU3+x2b3iruQSNNaoPLuy2reJGtZGNz4RiQKoOIFubzNjYWD9/mG+vqKOUgUdrjK5hsU99nQ36PgliuRaBgEeybXpyd0+j+ZaHP6BEDlAzk++T6/S6BpbTpAsMnNjPGFTs+ln3ZaqziikVLxvu+nYqjZu4AxQfKM4J276gVc4Ulnq/JCgUHwycsY+mLNRPYJufafDaB4EZvctHcI3PLLaDqi167gc//hbMnrNL4uWIKmMwbFr2Ra7WFUOgYbVy1AMwFGscOg+Dug8gij8lmDSHVCvcPnyZMnT54cPn+3kZXzmlxl8/nevhbqLAoQ6W6NSg8wt/Qg39LCP3FpbulR/s2QB/NIy3gkfvMyfgw/lp/Dzx29hrOIX5Nfm9fB60L/h21wLV5nIfNJxXx/byKZqQqN16lKxfwepnxHqU7KlgDFT0110tkifi9eafGUCcC80uIZLQCHNzutxlkYUKXieHOc+qRL4nXX/AddAGWAG5M/xQS5cXEDAxXfn2qCcZPLYoLJ8n9MkJ+bboK8DjtN8G/deeVli2jjGgAAAABJRU5ErkJggg==">
             
           <p style="color: #f7fbfe;">Explore More..</p>
           </div>
-        </div>
-       
       </div>
     </div>
     <div class="header reveal" id="Quiz-&-Puzzle">
-          <h1 class="Creature" id="Creature" style="font-family: 'Sacramento';font-size: 80px;color:rgb(255, 255, 255);padding-bottom:0%">Quiz & Puzzles</h1> </div>
+          <h1 class="Creature"  style="font-family: 'Sacramento';font-size: 80px;color:rgb(255, 255, 255);padding-bottom:0%">Quiz & Puzzles</h1> </div>
         <div class="container reveal" style="display: flex; flex-direction:row;">
           <form action="/quiz" method="post" style="margin-right: 5%;float:left">
           <button id ="myButton ">
@@ -172,7 +165,7 @@
           </div>
 
 
-        <div class="header reveal">
+        <div class="header reveal" id="Characters">
           <h1 style="font-family: 'Sacramento';font-size: 80px;color:rgb(255, 255, 255);font-weight:400">Characters</h1>
       </div>
       <div class="media-container reveal" style="display: flex; ">
@@ -232,9 +225,9 @@
             </div>
             </div> 
       
-    <div class="container reveal" id="Characters"style="width:100%">
+    <div class="container reveal" id="Houses"style="width:100%">
    
-    <div class=" house" id="Hogwarts">
+    <div class=" house" id="Hogwart's-Houses">
         <div class="outer-house-description" style="width:100%;text-align:center">
             <div><h1 class="house-name" >Hogwarts House Hub</h1> </div>
              <div class="house-description reveal" style="text-align:center; padding-bottom:25px">
@@ -300,6 +293,7 @@
         scrollContainer.style.scrollBehavior = "smooth";
         scrollContainer.scrollLeft -= 400;;
     })
+
 </script>  
 
 <script>
