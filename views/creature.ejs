@@ -12,7 +12,7 @@
     </form>
     <% creatureList.forEach(item => { %>
         <form action="/favs" method="post">
-            <input type="checkbox" name="checkbox" value="<%= item.name %>" onChange="this.form.submit()"></input>
+            <input type="checkbox" name="checkbox" value="<%= item._id %>" onChange="this.form.submit()"></input>
             <h1><%= item.name %></h1>
             <p><%= item.description %></p>
         </form>
