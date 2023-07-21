@@ -90,6 +90,7 @@ const creatures = [
     {
         name: "Erumpent",
         description: "A large, rhinoceros-like creature with a horn that contains a powerful explosive fluid. Erumpents are hunted for their horns, which are used in potions and wand cores.",
+    
     },
     {
         name: "Flobberworm",
