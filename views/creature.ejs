@@ -1,21 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creature-list</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="megicalCreature-list.css">
+<link rel="website icon" type="png" href="./images/image-removebg-preview.png" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+  <title>WMC-0.4</title>
+  <style>
+   
+    
+  </style>
 </head>
-<body>
-    <form action="/xyz" method="post">
-        <input type="search" name="creatureName">
-        <button type="submit">Search</button>
-    </form>
-    <% creatureList.forEach(item => { %>
-        <form action="/favs" method="post">
-            <input type="checkbox" name="checkbox" value="<%= item.name %>" onChange="this.form.submit()"></input>
-            <h1><%= item.name %></h1>
-            <p><%= item.description %></p>
-        </form>
-    <% }) %>
+
+<body >       
+    
+        
+            <div class="header-background">           
+        <header class="p-2 text-bg-dark-opacity-0  "   >
+            
+              <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center pr-2 mb-lg-0 text-white text-decoration-none">
+                 <img src="./images/golden-logo.png" class="svg-image" alt=""width="130" height="100" role="img" aria-label="Bootstrap" >
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li id="#"></li>
+                    <h1 class="Title-magical-creature">
+                        Magical Creature
+                    </h1>
+                </ul>
+                <div class="text-end">
+                  <button type="button" class="btn btn-warning me-2 "><a href = "login.html" style="color: black;text-decoration:none ">Login</a></button>
+                 
+                </div>
+              </div>           
+          </header>
+            </div>
+            <script src="creatures.js"></script>
+            
+            <div class="container2 " >
+
+              <div id="creature-container"></div>
+              <script>
+                const creaturesArray = [
+                  { title: 'Professor Dumbledore', description: 'Professor Albus Dumbledore is best known as the headmaster of Hogwarts School of Witchcraft and Wizardry, founder of the Order of the Phoenix, and master of the Elder Wand. Explore the collection of unique wands, bespoke collectibles, and fan-favourites from the Professor himself.' },
+                ];
+            
+                function createCreatureLayout(title, description) {
+                  const creatureHTML = `
+            <div id="shopify-section-template--16096473219241__carousel" class="shopify-section reveal">
+                <div class="featured">
+                  <div class="featured__wrapper">
+                    <div class="featured__carousel ltr">
+                      <div class="featured__panel">
+                        <div class="featured__frame">
+                          <span class="line top"></span>
+                          <span class="line left"></span>
+                          <span class="line right"></span>
+                          <span class="line bottom"></span>
+                          <span class="square tl"></span>
+                          <span class="square tr"></span>
+                          <span class="square bl"></span>
+                          <span class="square br"></span>
+                        </div>
+                          <h2 class="featured__title">${title}</h2>
+                          <p>${description}</p>                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              `;
+              return creatureHTML;
+            }
+        
+            const creatureContainer = document.getElementById('creature-container');
+            creatures.forEach((creature) => {
+              creatureContainer.innerHTML += createCreatureLayout(creature.name, creature.description);
+            });
+          </script>
+             
+            </div>
+<script>
+            function reveal() {
+                var reveals = document.querySelectorAll(".reveal");
+              
+                for (var i = 0; i < reveals.length; i++) {
+                  var windowHeight = window.innerHeight;
+                  var elementTop = reveals[i].getBoundingClientRect().top;
+                  var elementVisible = 150;
+              
+                  if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                  } else {
+                    reveals[i].classList.remove("active");
+                  }
+                }
+              }
+              
+              window.addEventListener("scroll", reveal);
+              
+        </script> 
+
+        <div id="shopify-section-footer" class="shopify-section reveal"><footer class="footer lazy-bg loaded">
+            
+            <div class="footer__wrapper">
+              <div class="footer__menu">
+                <div class="footer__logo">
+                  <a href="https://www.wizardingworld.com/" target="_blank" onclick="trackCTA('Icon Clicked', 'Wizarding World', 'footer', 'https://www.wizardingworld.com/')"><img src="./images/footer-logo.png" class="footer-logo"></i></a>
+                </div>
+                
+                 
+                  
+            </div>
+          </div>
 </body>
+
 </html>
+
+
