@@ -19,6 +19,7 @@
     
   </style>
 </head>
+<<<<<<< HEAD
 
 <body >       
     
@@ -120,6 +121,20 @@
                   
             </div>
           </div>
+=======
+<body>
+    <form action="/xyz" method="post">
+        <input type="search" name="creatureName">
+        <button type="submit">Search</button>
+    </form>
+    <% creatureList.forEach(item => { %>
+        <form action="/favs" method="post">
+            <input type="checkbox" name="checkbox" value="<%= item._id %>" onChange="this.form.submit()"></input>
+            <h1><%= item.name %></h1>
+            <p><%= item.description %></p>
+        </form>
+    <% }) %>
+>>>>>>> dd9deeebbbee0d2da3a1dd52428520ebe51dc724
 </body>
 
 </html>
