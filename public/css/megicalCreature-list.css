@@ -7,6 +7,12 @@ body{
     background-size: cover;
 
 }
+
+ul{
+    align-items: center;
+    margin-left: auto;
+}
+
 .reveal{
     position: relative;
     transform: translateY(150px);

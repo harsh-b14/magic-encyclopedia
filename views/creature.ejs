@@ -28,14 +28,19 @@
             
               <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center pr-2 mb-lg-0 text-white text-decoration-none">
-                 <img src="images/golden-logo.png" class="svg-image" alt=""width="130" height="100" role="img" aria-label="Bootstrap" >
+                 <!-- <img src="images/golden-logo.png" class="svg-image" alt=""width="130" height="100" role="img" aria-label="Bootstrap" > -->
+                 <img src="../images/white-logo.png" class="svg-image" alt=""width="60" height="50" role="img" aria-label="Bootstrap" >
                 </a>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li id="#"></li>
-                    <h1 class="Title-magical-creature" style="text-align: center;">
+                    <h2 class="Title-magical-creature" style="text-align: center;">
                         Magical Creature
-                    </h1>
+                    </h2>
                 </ul>
+                <form action="/xyz" method="post">
+                  <input type="search" name="creatureName" placeholder="Search..">
+                  <button type="submit">Search</button>
+                </form>
               </div>           
           </header>
             </div>
@@ -61,7 +66,7 @@
                           <span class="square br"></span>
                         </div>
                               <form action="/favs" method="post"> 
-                                <input type="checkbox" name="checkbox" value="<%= item._id %>" onChange="this.form.submit()">
+                                <input class="checkbox" type="checkbox" name="checkbox" value="<%= item._id %>" onChange="this.form.submit()">
                                 <h2 class="featured__title" style="color: white;"><%= item.name %></h2>
                                 <p style="color: white;"><%= item.description %></p>  
                               </form>         
