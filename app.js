@@ -84,6 +84,7 @@ app.get("/creatures", function(req, res){
     Creature.find({}).then(function(foundItem){
         console.log(foundItem.length);
         res.render("creature", {creatureList: foundItem});
+        // res.render("creature");
     });
 });
 
