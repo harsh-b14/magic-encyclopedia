@@ -9,6 +9,7 @@ const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser')
+const SECRET_KEY = "thisisasecretkey";
 
 // making an express application
 const app = express();
