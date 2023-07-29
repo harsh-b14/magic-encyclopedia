@@ -66,7 +66,7 @@ body{
   position: absolute;
   height: 100%;
   width: 100%;
-  background: #7d2ae8;
+  background: #120228;
   opacity: 0.5;
   z-index: 12;
 }
@@ -159,11 +159,11 @@ body{
 }
 .form-content .input-box input:focus,
 .form-content .input-box input:valid{
-  border-color: #7d2ae8;
+  border-color: #120228;
 }
 .form-content .input-box i{
   position: absolute;
-  color: #7d2ae8;
+  color: #120228;
   font-size: 17px;
 }
 .forms .form-content .text{
@@ -173,6 +173,7 @@ body{
 }
 .forms .form-content .text a{
   text-decoration: none;
+  color: darkblue;
 }
 .forms .form-content .text a:hover{
   text-decoration: underline;
@@ -183,7 +184,7 @@ body{
 }
 .forms .form-content .button input{
   color: #fff;
-  background: #7d2ae8;
+  background: #120228;
   border-radius: 6px;
   padding: 0;
   cursor: pointer;
@@ -193,7 +194,7 @@ body{
   background: #5b13b9;
 }
 .forms .form-content label{
-  color: #5b13b9;
+  color: darkblue;
   cursor: pointer;
 }
 .forms .form-content label:hover{
