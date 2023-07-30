@@ -294,3 +294,54 @@ html{
   
 
             /*footer*/
+
+             /*footer */
+ .lazy-bg.loaded {
+    opacity: 1;
+    display: flex;
+
+}
+
+.lazy-bg {
+    opacity: 0;
+    transition: opacity .4s;
+}
+.footer {
+    color: #fcf5e7;
+    background-image: url(../images/footer.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top: 10px solid #a85;
+    padding: 50px 0 40px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 5%;
+    display: block;
+}
+.footer-logo{
+    background-position: center;
+    background-size: cover;
+    transition: color .25s;
+    height: 102px;
+
+}
+.footer .footer__wrapper {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+}
+.footer .footer__menu {
+    padding-right: 0;
+}
+.footer .footer__menu {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-right: 10%;
+    display: flex;
+}
+a{
+    text-decoration: none;
+    color: black;
+}

@@ -317,4 +317,10 @@ const creatures = [
         description: "A gigantic, feline-like creature from China that resembles a monstrous lion. Zouwus have a long, serpentine body and can travel at great speeds.",
     },
 ]
+
+const data = [];
+creatures.forEach(item=>{
+    data.push(item.name);
+});
 module.exports = creatures;
+module.exports = data;
