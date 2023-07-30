@@ -42,10 +42,10 @@ const auth = async(req, res, next) => {
         const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
         // console.log(verifyUser);
         const user = await LoginDetail.findOne({_id: verifyUser._id});
-        console.log(user);
+        // console.log(user);
         next();
     } catch (error) {
-        res.status(401).send(error);
+        res.send("<script>alert('Your session expired. Please, login again!');window.location = '/login';</script>");
     }
 }
 
@@ -73,15 +73,31 @@ const Creature = new mongoose.model("Creature", creaturesSchema);
 
 // creating schema to store favourites of user into DB
 const favSchema = new mongoose.Schema({
-    name: {type: mongoose.Schema.Types.ObjectId, ref: 'LoginDetail', unique:true},
-    favourites:[{type: mongoose.Schema.Types.ObjectId, ref: 'Creature', unique:true}],
+    userId: {type: mongoose.Schema.Types.ObjectId, ref: 'LoginDetail', unique:true},
+    // favourites:[{type: mongoose.Schema.Types.ObjectId, ref: 'Creature', unique:true}],
+    favourites:[
+        {
+            creatureId: {type: mongoose.Schema.Types.ObjectId, ref: 'Creature', unique:true},
+            creatureName: String,
+        }
+    ],
 });
 const Favourite = new mongoose.model("Favourite", favSchema);
 
 // all the get method 
 
 app.get("/", async (req, res) => {
-        res.render("home", { btnValue: "Login" });
+        if(auth){
+            console.log("entered into if block");
+            const token = req.cookies.userCookie;
+            const details = token.split(" ")[1];
+            const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
+            const username = verifyUser.username; 
+            res.render("home", { btnValue: username});
+        }
+        else{
+            res.render("home", { btnValue: "Login" });
+        }
     });
 
 app.get("/login", function(req, res){
@@ -89,9 +105,8 @@ app.get("/login", function(req, res){
 });
 
 app.get("/creatures", auth, async(req, res) => {
-    const foundItem = await Creature.find({});
-    console.log(foundItem.length);
-    res.render("creature", {creatureList: foundItem});
+    const foundItems = await Creature.find({});
+    res.render("creature", {creatureList: foundItems});
 });
 
 app.get('/api/data', (req, res) => {
@@ -103,8 +118,18 @@ app.get("/:userName", auth, async (req, res) => {
     const token = req.cookies.userCookie;
     const details = token.split(" ")[1];
     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
-    res.send("hello " + userName);
+    const userFavs = await Favourite.findOne({userId: verifyUser._id});
+    // cons ole.log("userFavs::::" + favList);
+    const favList = userFavs.favourites;
+    console.log(favList); 
+    res.render("favourites", {favList: favList});
 });
+
+// app.get("/creatures/:creatureName", auth, async(req, res) => {
+//     const creatureName = _.capitalize(req.params.creatureName);
+//     const foundItems = await Creature.find({name: {$regex : creatureName, $options: 'i'}});
+//     res.render("creature", {creatureList: foundItems});
+// });
 
 // all the post method
 
@@ -194,8 +219,10 @@ app.post("/storyLineQuiz", auth, function(req, res){
     res.sendFile(__dirname + "/quiz3.html");
 });
     
-app.post("/xyz", async function(req, res){
+app.post("/search", async function(req, res){
     const creatureName = _.capitalize(req.body.creatureName);
+    // res.redirect("/creatures/" + creatureName);
+
     const foundItems = await Creature.find({name: {$regex : creatureName, $options: 'i'}});
     res.render("creature", {creatureList: foundItems});
     console.log(foundItems);
@@ -203,31 +230,38 @@ app.post("/xyz", async function(req, res){
 
 app.post("/favs", auth, async(req, res) => {
     const checkItemId = req.body.checkbox;
+    const creature = await Creature.findOne({_id: checkItemId});
     // console.log(checkItemId);
+    // console.log(creature.name);
     const token = req.cookies.userCookie;
     const details = token.split(" ")[1];
     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
-    console.log(verifyUser);
-    const user = await Favourite.findOne({name: verifyUser._id});
+    const user = await Favourite.findOne({userId: verifyUser._id});
     if(!user){
         const userFavs = new Favourite({
-            name: verifyUser._id,
-            favourites: [
-                checkItemId,
-            ]
+            userId: verifyUser._id,
+            favourites: [{
+                creatureId: checkItemId,
+                creatureName: creature.name,
+            }]
         });
-        console.log(userFavs);
+        // console.log(userFavs);
         // populate('userFavs');
         await userFavs.save();
         res.redirect("/creatures");
     }
     else{
-        console.log("Entered into else");
-        const item = await Favourite.find({name: verifyUser._id, favourites:{$elemMatch : {$eq: checkItemId}}});
-        console.log(item);
+        // console.log("Entered into else");
+        // const item = await Favourite.find({name: verifyUser._id, favourites:{$elemMatch : {$eq: checkItemId}}});
+        const item = await Favourite.find({userId: verifyUser._id, favourites:{$elemMatch:{creatureId: {$eq: checkItemId}}}});
+        // console.log(item);
         if(item.length == 0){
-            console.log("......");
-            await user.favourites.push(checkItemId);
+            // console.log("......");
+            const newItem = {
+                creatureId: checkItemId,
+                creatureName: creature.name,
+            }
+            await user.favourites.push(newItem);
             await user.save();
         }  
         res.redirect("/creatures");
