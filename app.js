@@ -86,18 +86,18 @@ const Favourite = new mongoose.model("Favourite", favSchema);
 
 // all the get method 
 
-app.get("/", async (req, res) => {
-        if(auth){
+app.get("/", auth, async (req, res) => {
+        // if(auth){
             console.log("entered into if block");
             const token = req.cookies.userCookie;
             const details = token.split(" ")[1];
             const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
             const username = verifyUser.username; 
-            res.render("home", { btnValue: username});
-        }
-        else{
-            res.render("home", { btnValue: "Login" });
-        }
+            res.render("home", {btnValue: username});
+        // }
+        // else{
+        //     res.render("home", {btnValue: "Login" });
+        // }
     });
 
 app.get("/login", function(req, res){
@@ -147,6 +147,14 @@ app.post("/login", async (req, res)=>{
 
 // post method to login or signup using JWT
 app.post("/", async (req, res) => {
+        if(auth == true){
+            console.log("entered into if block");
+            const token = req.cookies.userCookie;
+            const details = token.split(" ")[1];
+            const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
+            const username = verifyUser.username; 
+            res.render("home", { btnValue: username});
+        }
         const btnValue = req.body.btn;
         if (btnValue == "Login") {
             const email = req.body.email;
@@ -155,22 +163,24 @@ app.post("/", async (req, res) => {
 
             const existingUser = await LoginDetail.findOne({ email: email, username: username});
             if(existingUser === null){
-                res.send("<script>alert('Username of e-mail Id does not exist!');window.location = '/';</script>");
-            }   
-            const matchPassword = await bcrypt.compare(password, existingUser.password);
-            if(!matchPassword){
-                res.send("<script>alert('Wrong Password!');window.location = '/';</script>");
+                res.send("<script>alert('Username of e-mail Id does not exist!');window.location = '/login';</script>");
             }
             else{
+                const matchPassword = await bcrypt.compare(password, existingUser.password);
+                if(!matchPassword){
+                    res.send("<script>alert('Wrong Password!');window.location = '/login';</script>");
+                }
+                else{
                     const token = await jwt.sign({ email: existingUser.email, username: existingUser.username, _id: existingUser._id }, process.env.SECRET_KEY, {
-                    expiresIn: '600s'
-                });
-                // console.log(existingUser);
-                res.cookie("userCookie", token);
-                // console.log(req.cookies.userCookie);
-                // console.log(token);
-                res.render("home", { btnValue: existingUser.username });
-            }
+                        expiresIn: '600s'
+                    });
+                    // console.log(existingUser);
+                    res.cookie("userCookie", token);
+                    // console.log(req.cookies.userCookie);
+                    // console.log(token);
+                    res.render("home", { btnValue: existingUser.username });
+                }
+            }    
         }
         else {
             const name = req.body.personName;
@@ -181,7 +191,7 @@ app.post("/", async (req, res) => {
             const foundItem1 = await LoginDetail.findOne({ email: email });
             const foundItem2 = await LoginDetail.findOne({ username: username});
             if (foundItem1 || foundItem2) {
-                res.send("<script>alert('Username or e-mail already in use! Try using another!');window.location = '/';</script>");
+                res.send("<script>alert('Username or e-mail already in use! Try using another!');window.location = '/login';</script>");
             }
             else{
                 const hashedPassword = await bcrypt.hash(password, 12);
@@ -192,7 +202,7 @@ app.post("/", async (req, res) => {
                     password: hashedPassword
                 });
                 const token = jwt.sign({ email: details.email, username: details.username, _id: details._id }, process.env.SECRET_KEY,{
-                    expiresIn: '1h'
+                    expiresIn: '1200s'
                 });
                 res.cookie("userCookie", token);
                 // res.status(201).json({user: details, token: token});
@@ -268,10 +278,29 @@ app.post("/favs", auth, async(req, res) => {
     }
 });
 
-app.post("/exitQuiz", function(req, res){
-    const userName = req.body.button;
-    console.log(userName);
-    // res.redirect("/");
+app.post("/delete", auth, async(req, res) => {
+    const checkItemId = req.body.checkbox;
+    console.log(checkItemId);
+    const token = req.cookies.userCookie;
+    const details = token.split(" ")[1];
+    const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
+    const user = await Favourite.findOne({userId: verifyUser._id});
+    const item = await Favourite.find({userId: user._id, favourites:{$elemMatch:{creatureId: {$eq: checkItemId}}}});
+    // await user.favourites.pull(item);
+    // // // await user.favourites.pull( {userId: verifyUser._id},
+    // // // {$pull:{favourites:{creatureId: checkItemId}}},
+    // // // false,true);
+    // // Favourite.findOneAndUpdate({userId: verifyUser._id},{$pull: {favourites: {creatureId: checkItemId}}}).then(function(req, res){
+    // //     res.send("deleted the item from favs");
+    // // });
+    // res.send("...............");
+    if(item){
+        console.log(item);
+    }
+});
+
+app.post("/exitQuiz", auth, function(req, res){
+    res.redirect("/");
 });
 
 app.listen(port, async () => {

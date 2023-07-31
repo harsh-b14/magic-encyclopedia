@@ -43,7 +43,7 @@
                 <div class="info">5. You'll get points on the basis of your correct answers.</div>
             </div>
             <div class="buttons">
-                <form action="/exitQuiz" method="post" >
+                <form action="/exitQuiz" method="post">
                     <button class="quit">Exit Quiz</button>
                 </form>
                 <button class="restart">Continue</button>
@@ -53,7 +53,7 @@
         <!-- Quiz Box -->
         <div class="quiz_box">
             <header>
-                <div class="title">Magical Creature</div>
+                <div class="title">Character Quiz</div>
                 <div class="timer">
                     <div class="time_left_txt">Time Left</div>
                     <div class="timer_sec">15</div>
@@ -84,10 +84,15 @@
             <div class="complete_text">You've completed the Quiz!</div>
             <div class="score_text">
             </div>
-            <div class="buttons">
-                <button class="restart">Replay Quiz</button>
-                <button class="quit">Quit Quiz</button>
-            </div>
+            
+                <div class="buttons">
+                    <!-- <form action="/" method="post"></form> -->
+                    <button class="restart">Replay Quiz</button>
+                    <form action="/exitQuiz" method="post">
+                        <button class="quit" type="submit">Quit Quiz</button>
+                    </form>
+                </div>
+            
         </div>
     </div>
         </div>
@@ -108,101 +113,101 @@
   },
     {
     numb :2,
-    question: "Which creature can only be seen by those who have witnessed death?",
-    answer: "Thestral",
+    question: "What is the name of the house ghost of Ravenclaw?",
+    answer: "The Grey Lady",
     options : [
-      "Dementor",
-      "Thestral",
-      "Hippogriff",
-      "Centaur",
+        "Nearly Headless Nick",
+        "The Fat Friar",
+        "The Grey Lady",
+        "Peeves",
     ]
   },
     {
     numb :3,
-    question: "What is the large spider colony in the Forbidden Forest called?",
-    answer: "Acromantula",
+    question: "Which character is known for his love of socks and being the owner of the Weasley family owl, Pigwidgeon?",
+    answer: "Ron Weasley",
     options : [
-      "Acromantula",
-      "Niffler",
-      "Bowtruckle",
-      "Blast-Ended Skrewt",
+        "Arthur Weasley",
+        "Charlie Weasley",
+        "Percy Weasley",
+        "Ron Weasley",
     ]
   },
     {
     numb :4,
-    question: "Which magical creature can breathe fire and is known for guarding treasures?",
-    answer: "Hungarian Horntail",
+    question: "Who is the Herbology professor at Hogwarts?",
+    answer: "Pomona Sprout",
     options : [
-      "Hungarian Horntail",
-      "Centaur",
-      "Merperson",
-      "Basilisk",
+      "Pomona Sprout",
+      "Horace Slughorn",
+      "Sybill Trelawney",
+      "Bathsheda Babbling",
     ]
   },
     {
     numb :5,
-    question: "What creature does Luna Lovegood claim to have seen that no one believes exists?",
-    answer: "Nargle",
+    question: "Which character is known for her ability to see into the future through divination?",
+    answer: "Sybill Trelawney",
     options : [
-      "Blast-Ended Skrewt",
-      "Diricawl",
-      "Nargle",
-      "Knarl",
+      "Luna Lovegood",
+      "Sybill Trelawney",
+      "Fleur Delacour",
+      "Lavender Brown",
     ]
   },
     {
     numb :6,
-    question: "Which creature has the ability to heal others with its tears?",
-    answer: "Phoenix",
+    question: "Who is Harry Potter's best friend?",
+    answer: "Ron Weasley",
     options : [
-      "Phoenix",
-      "Hippogriff",
-      "Kneazle",
-      "Thestral",
+      "Draco Malfoy",
+      "Neville Longbottom",
+      "Ron Weasley",
+      "Cedric Diggory",
     ]
   },
     {
     numb :7,
-    question: "What is the name of the small, mischievous creature that loves shiny objects?",
-    answer: "Niffler",
+    question: "What is the name of the animagus form of Sirius Black?",
+    answer: "Dog",
     options : [
-      "Niffler",
-      "Bowtruckle",
-      "Augurey",
-      "Demiguise",
+      "Stag",
+      "Rat",
+      "Dog",
+      "Werewolf",
     ]
   },
     {
     numb :8,
-    question: "Which creature has the power to change its appearance to match its surroundings?",
-    answer: "Demiguise",
+    question: "Which character is known for her exceptional skills in Transfiguration and later becomes the Minister for Magic?",
+    answer: "Minerva McGonagall",
     options : [
-      "Chimaera",
-      "Erumpent",
-      "Demiguise",
-      "Occamy",
+      "Minerva McGonagall",
+      "Molly Weasley",
+      "Nymphadora Tonks",
+      "Fleur Delacour",
     ]
   },
     {
     numb :9,
-    question: "What is the name of the creature that resembles a large, flying snake?",
-    answer: "Wyvern",
+    question: "What is the name of the house-elf who serves the Black family and later assists Harry Potter?",
+    answer: "Kreacher",
     options : [
-      "Grindylow",
-      "Manticore",
-      "Horned Serpent",
-      "Wyvern",
+      "Winky",
+      "Dobby",
+      "Kreacher",
+      "Hokey",
     ]
   },
     {
     numb :10,
-    question: "Which creature has the ability to spin a silvery web that can be used for defensive purposes?",
-    answer: "Acromantula",
+    question: "Who is the owner of the wand made from elder wood, known as the Elder Wand?",
+    answer: "Lord Voldemort",
     options : [ 
-      "last-Ended Skrewt",
-      "Acromantula",
-      "Bowtruckle",
-      "Doxy",
+      "Harry Potter",
+      "Draco Malfoy",
+      "Albus Dumbledore",
+      "Lord Voldemort",
     ]
   },
 ];
