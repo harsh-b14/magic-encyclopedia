@@ -86,18 +86,18 @@ const Favourite = new mongoose.model("Favourite", favSchema);
 
 // all the get method 
 
-app.get("/", async (req, res) => {
-        if(auth){
+app.get("/",auth,async (req, res) => {
+        // if(auth){
             console.log("entered into if block");
             const token = req.cookies.userCookie;
             const details = token.split(" ")[1];
             const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
             const username = verifyUser.username; 
             res.render("home", { btnValue: username});
-        }
-        else{
-            res.render("home", { btnValue: "Login" });
-        }
+        // }
+        // else{
+        //     res.render("home", { btnValue: "Login" });
+        // }
     });
 
 app.get("/login", function(req, res){
