@@ -86,7 +86,7 @@ svg text {
     position: absolute;
     z-index: 5;
     pointer-events: auto;
-    margin-top: -200px;
+    margin-top: -330px;
     transform: translate(-50%, -50%) scale(1);
 }
 

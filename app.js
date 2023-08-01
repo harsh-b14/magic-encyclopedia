@@ -36,17 +36,24 @@ async function main() {
 
 // creating an authorization middleware
 const auth = async(req, res, next) => {
-    try {
-        const token = req.cookies.userCookie;
-        const details = token.split(" ")[1];
-        const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
-        // console.log(verifyUser);
-        const user = await LoginDetail.findOne({_id: verifyUser._id});
-        // console.log(user);
-        next();
-    } catch (error) {
-        res.send("<script>alert('Your session expired. Please, login again!');window.location = '/login';</script>");
-    }
+    next();
+    // try {
+    //     const { userCookie } = req.cookies;
+    //     if (!userCookie || userCookie === '') {
+    //       return res.status(401).json({ message: 'Token not found' });
+    //     }
+    //     jwt.verify(userCookie, process.env.JWT_SECRET, (err, decoded) => {
+    //       if (err) {
+    //         res.send("<script>alert('Invalid Token!');window.location = '/login';</script>");
+    //         // return res.status(401).json({ message: 'Invalid Token', error: err });
+    //       }
+    //       req.decoded = decoded;
+    //       next();
+    //     });
+    //   } catch (err) {
+    //     res.send("<script>alert('Token not found!');window.location = '/login';</script>");
+    //     // return res.status(401).json({ message: 'Token not found', error: err });
+    //   }
 }
 
 // creaeting schema to store credential of users in DB
@@ -86,19 +93,31 @@ const Favourite = new mongoose.model("Favourite", favSchema);
 
 // all the get method 
 
-app.get("/", auth, async (req, res) => {
-        // if(auth){
-            console.log("entered into if block");
-            const token = req.cookies.userCookie;
-            const details = token.split(" ")[1];
-            const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
-            const username = verifyUser.username; 
-            res.render("home", {btnValue: username});
-        // }
-        // else{
-        //     res.render("home", {btnValue: "Login" });
-        // }
-    });
+
+app.get("/", async (req, res) => {
+    console.log("Get request recived!");
+    try {
+        const { userCookie } = req.cookies;
+        console.log('userCookie: ', userCookie); // dev 
+        if (!userCookie || userCookie === '') {
+            console.log(".");
+            res.render("home", {btnValue: "Login" });
+        }
+        jwt.verify(userCookie, process.env.SECRET_KEY, (err, decoded) => {
+          if (err) {
+            console.log("..", err);
+            res.render("home", {btnValue: "Login" });
+          }else{
+            console.log("....")
+            res.render("home", {btnValue: decoded.username});
+          }
+        });
+    } catch (err) {
+        console.log("err: ", err);
+        res.render("home", {btnValue: "Login" });
+        
+    }
+});
 
 app.get("/login", function(req, res){
     res.sendFile(__dirname + "/login.html");
@@ -113,7 +132,23 @@ app.get('/api/data', (req, res) => {
     res.json(data);
 });
 
-app.get("/:userName", auth, async (req, res) => {
+app.get("/gryffindor", auth, async(req, res) => {
+    res.sendFile(__dirname + "/Gryffindor-house.html");
+});
+
+app.get("/hufflepuff", auth, async(req, res) => {
+    res.sendFile(__dirname + "/Hufflepuff-house.html");
+});
+
+app.get("/ravenclaw", auth, async(req, res) => {
+    res.sendFile(__dirname + "/Ravenclaw-house.html");
+});
+
+app.get("/slytherin", auth, async(req, res) => {
+        res.sendFile(__dirname + "/Slytherin-house.html");
+});
+
+app.get("/user/:userName", auth, async (req, res) => {
     const userName = req.params.userName;
     const token = req.cookies.userCookie;
     const details = token.split(" ")[1];
@@ -147,14 +182,14 @@ app.post("/login", async (req, res)=>{
 
 // post method to login or signup using JWT
 app.post("/", async (req, res) => {
-        if(auth == true){
-            console.log("entered into if block");
-            const token = req.cookies.userCookie;
-            const details = token.split(" ")[1];
-            const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
-            const username = verifyUser.username; 
-            res.render("home", { btnValue: username});
-        }
+        // if(auth == true){
+        //     console.log("entered into if block");
+        //     const token = req.cookies.userCookie;
+        //     const details = token.split(" ")[1];
+        //     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
+        //     const username = verifyUser.username; 
+        //     res.render("home", { btnValue: username});
+        // }
         const btnValue = req.body.btn;
         if (btnValue == "Login") {
             const email = req.body.email;
@@ -278,26 +313,26 @@ app.post("/favs", auth, async(req, res) => {
     }
 });
 
-app.post("/delete", auth, async(req, res) => {
-    const checkItemId = req.body.checkbox;
-    console.log(checkItemId);
-    const token = req.cookies.userCookie;
-    const details = token.split(" ")[1];
-    const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
-    const user = await Favourite.findOne({userId: verifyUser._id});
-    const item = await Favourite.find({userId: user._id, favourites:{$elemMatch:{creatureId: {$eq: checkItemId}}}});
-    // await user.favourites.pull(item);
-    // // // await user.favourites.pull( {userId: verifyUser._id},
-    // // // {$pull:{favourites:{creatureId: checkItemId}}},
-    // // // false,true);
-    // // Favourite.findOneAndUpdate({userId: verifyUser._id},{$pull: {favourites: {creatureId: checkItemId}}}).then(function(req, res){
-    // //     res.send("deleted the item from favs");
-    // // });
-    // res.send("...............");
-    if(item){
-        console.log(item);
-    }
-});
+// app.post("/delete", auth, async(req, res) => {
+//     const checkItemId = req.body.checkbox;
+//     console.log(checkItemId);
+//     const token = req.cookies.userCookie;
+//     const details = token.split(" ")[1];
+//     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
+//     const user = await Favourite.findOne({userId: verifyUser._id});
+//     const item = await Favourite.find({userId: user._id, favourites:{$elemMatch:{creatureId: {$eq: checkItemId}}}});
+//     // await user.favourites.pull(item);
+//     // // // await user.favourites.pull( {userId: verifyUser._id},
+//     // // // {$pull:{favourites:{creatureId: checkItemId}}},
+//     // // // false,true);
+//     // // Favourite.findOneAndUpdate({userId: verifyUser._id},{$pull: {favourites: {creatureId: checkItemId}}}).then(function(req, res){
+//     // //     res.send("deleted the item from favs");
+//     // // });
+//     // res.send("...............");
+//     if(item){
+//         console.log(item);
+//     }
+// });
 
 app.post("/exitQuiz", auth, function(req, res){
     res.redirect("/");

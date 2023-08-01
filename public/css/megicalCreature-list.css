@@ -101,7 +101,7 @@ transition: transform 0.5s;
 }
 
 .form{
-  z-index: 10;
+  z-index: 11;
 }
 
 .checkbox{
@@ -487,7 +487,7 @@ bottom: 0;
 background-color: #0d141e;
 }
 div.featured .featured__frame {
-position: absolute;
+position: relative;
 top: 20px;
 bottom: 20px; 
 left: 20px;
@@ -590,7 +590,7 @@ position: absolute;
 }
 div.featured .featured__frame .square.tr {
 top: 12px;
-right: 50px;
+right: 12px;
 }
 div.featured .featured__frame .square.bl {
 bottom: 12px;
@@ -644,15 +644,16 @@ font-weight: 400;
   list-style-type: none;
   padding: 0;
   margin: 0;
-  border: 1px solid #ccc;
-  background-color: #fff;
+  /* border: 1px solid #ccc; */
+  background-color: #ffffffa3;
 }
 
 #autocompleteList li {
   padding: 10px;
   cursor: pointer;
+  background-color: #fff;
 }
 
 #autocompleteList li:hover {
-  background-color: #f1f1f1;
+  background-color: #8c8c8c60;
 }
