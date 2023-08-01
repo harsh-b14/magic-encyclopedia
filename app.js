@@ -20,7 +20,7 @@ const port = process.env.PORT || 3000;
 // letting express app use other module properties
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
-app.use(express.static("public"));
+app.use(express.static(__dirname +  "/public"));
 app.use(express.json());
 app.use(cookieParser());
 // app.use((req, res, next)=>{
@@ -36,24 +36,24 @@ async function main() {
 
 // creating an authorization middleware
 const auth = async(req, res, next) => {
-    next();
-    // try {
-    //     const { userCookie } = req.cookies;
-    //     if (!userCookie || userCookie === '') {
-    //       return res.status(401).json({ message: 'Token not found' });
-    //     }
-    //     jwt.verify(userCookie, process.env.JWT_SECRET, (err, decoded) => {
-    //       if (err) {
-    //         res.send("<script>alert('Invalid Token!');window.location = '/login';</script>");
-    //         // return res.status(401).json({ message: 'Invalid Token', error: err });
-    //       }
-    //       req.decoded = decoded;
-    //       next();
-    //     });
-    //   } catch (err) {
-    //     res.send("<script>alert('Token not found!');window.location = '/login';</script>");
-    //     // return res.status(401).json({ message: 'Token not found', error: err });
-    //   }
+    try {
+        const { userCookie } = req.cookies;
+        if (!userCookie || userCookie === '') {
+            res.send("<script>alert('Please login to access!');window.location = '/';</script>");
+            // return res.status(401).json({ message: 'Token not found, please login again!'});
+        }
+        else{
+            jwt.verify(userCookie, process.env.SECRET_KEY, (err, decoded) => {
+                if (err) {
+                  res.send("<script>alert('Invalid Token!');window.location = '/';</script>");
+                }
+                req.decoded = decoded;
+            });
+            next();
+        }
+    } catch (err) {
+        res.send("<script>alert('Please Login!');window.location = '/';</script>");
+    }
 }
 
 // creaeting schema to store credential of users in DB
@@ -80,13 +80,11 @@ const Creature = new mongoose.model("Creature", creaturesSchema);
 
 // creating schema to store favourites of user into DB
 const favSchema = new mongoose.Schema({
-    userId: {type: mongoose.Schema.Types.ObjectId, ref: 'LoginDetail', unique:true},
-    // favourites:[{type: mongoose.Schema.Types.ObjectId, ref: 'Creature', unique:true}],
+    userId: {type: mongoose.Schema.Types.ObjectId, ref: 'LoginDetail', unique: true},
     favourites:[
         {
-            creatureId: {type: mongoose.Schema.Types.ObjectId, ref: 'Creature', unique:true},
             creatureName: String,
-        }
+        },
     ],
 });
 const Favourite = new mongoose.model("Favourite", favSchema);
@@ -115,7 +113,6 @@ app.get("/", async (req, res) => {
     } catch (err) {
         console.log("err: ", err);
         res.render("home", {btnValue: "Login" });
-        
     }
 });
 
@@ -149,22 +146,13 @@ app.get("/slytherin", auth, async(req, res) => {
 });
 
 app.get("/user/:userName", auth, async (req, res) => {
-    const userName = req.params.userName;
     const token = req.cookies.userCookie;
-    const details = token.split(" ")[1];
     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
     const userFavs = await Favourite.findOne({userId: verifyUser._id});
-    // cons ole.log("userFavs::::" + favList);
-    const favList = userFavs.favourites;
-    console.log(favList); 
+    const favList = userFavs.favourites; 
     res.render("favourites", {favList: favList});
 });
 
-// app.get("/creatures/:creatureName", auth, async(req, res) => {
-//     const creatureName = _.capitalize(req.params.creatureName);
-//     const foundItems = await Creature.find({name: {$regex : creatureName, $options: 'i'}});
-//     res.render("creature", {creatureList: foundItems});
-// });
 
 // all the post method
 
@@ -176,20 +164,12 @@ app.post("/login", async (req, res)=>{
     }
     else{
         // will display user profile page
-        res.redirect("/" + btnValue);
+        res.redirect("/user/" + btnValue);
     }
 });
 
 // post method to login or signup using JWT
 app.post("/", async (req, res) => {
-        // if(auth == true){
-        //     console.log("entered into if block");
-        //     const token = req.cookies.userCookie;
-        //     const details = token.split(" ")[1];
-        //     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
-        //     const username = verifyUser.username; 
-        //     res.render("home", { btnValue: username});
-        // }
         const btnValue = req.body.btn;
         if (btnValue == "Login") {
             const email = req.body.email;
@@ -209,10 +189,7 @@ app.post("/", async (req, res) => {
                     const token = await jwt.sign({ email: existingUser.email, username: existingUser.username, _id: existingUser._id }, process.env.SECRET_KEY, {
                         expiresIn: '600s'
                     });
-                    // console.log(existingUser);
                     res.cookie("userCookie", token);
-                    // console.log(req.cookies.userCookie);
-                    // console.log(token);
                     res.render("home", { btnValue: existingUser.username });
                 }
             }    
@@ -239,11 +216,8 @@ app.post("/", async (req, res) => {
                 const token = jwt.sign({ email: details.email, username: details.username, _id: details._id }, process.env.SECRET_KEY,{
                     expiresIn: '1200s'
                 });
-                res.cookie("userCookie", token);
-                // res.status(201).json({user: details, token: token});
+                res.cookie("userCookie", token);                
                 res.render("home", { btnValue: details.username });
-                // console.log(token);
-                // details.save();
             }
         }
     });
@@ -266,8 +240,6 @@ app.post("/storyLineQuiz", auth, function(req, res){
     
 app.post("/search", async function(req, res){
     const creatureName = _.capitalize(req.body.creatureName);
-    // res.redirect("/creatures/" + creatureName);
-
     const foundItems = await Creature.find({name: {$regex : creatureName, $options: 'i'}});
     res.render("creature", {creatureList: foundItems});
     console.log(foundItems);
@@ -276,63 +248,33 @@ app.post("/search", async function(req, res){
 app.post("/favs", auth, async(req, res) => {
     const checkItemId = req.body.checkbox;
     const creature = await Creature.findOne({_id: checkItemId});
-    // console.log(checkItemId);
-    // console.log(creature.name);
     const token = req.cookies.userCookie;
-    const details = token.split(" ")[1];
     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
     const user = await Favourite.findOne({userId: verifyUser._id});
-    if(!user){
+    if(!user || user === null){
+        console.log("entered into if");
         const userFavs = new Favourite({
             userId: verifyUser._id,
             favourites: [{
-                creatureId: checkItemId,
                 creatureName: creature.name,
             }]
         });
-        // console.log(userFavs);
-        // populate('userFavs');
         await userFavs.save();
         res.redirect("/creatures");
     }
     else{
-        // console.log("Entered into else");
-        // const item = await Favourite.find({name: verifyUser._id, favourites:{$elemMatch : {$eq: checkItemId}}});
-        const item = await Favourite.find({userId: verifyUser._id, favourites:{$elemMatch:{creatureId: {$eq: checkItemId}}}});
-        // console.log(item);
-        if(item.length == 0){
-            // console.log("......");
+        const item = await Favourite.find({userId: verifyUser._id, favourites:{$elemMatch:{creatureName: {$eq: creature.name}}}});
+        console.log(item);
+        if(item.length == 0 || !item){
             const newItem = {
-                creatureId: checkItemId,
-                creatureName: creature.name,
-            }
+                creatureName: creature.name
+            };
             await user.favourites.push(newItem);
             await user.save();
         }  
         res.redirect("/creatures");
     }
 });
-
-// app.post("/delete", auth, async(req, res) => {
-//     const checkItemId = req.body.checkbox;
-//     console.log(checkItemId);
-//     const token = req.cookies.userCookie;
-//     const details = token.split(" ")[1];
-//     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
-//     const user = await Favourite.findOne({userId: verifyUser._id});
-//     const item = await Favourite.find({userId: user._id, favourites:{$elemMatch:{creatureId: {$eq: checkItemId}}}});
-//     // await user.favourites.pull(item);
-//     // // // await user.favourites.pull( {userId: verifyUser._id},
-//     // // // {$pull:{favourites:{creatureId: checkItemId}}},
-//     // // // false,true);
-//     // // Favourite.findOneAndUpdate({userId: verifyUser._id},{$pull: {favourites: {creatureId: checkItemId}}}).then(function(req, res){
-//     // //     res.send("deleted the item from favs");
-//     // // });
-//     // res.send("...............");
-//     if(item){
-//         console.log(item);
-//     }
-// });
 
 app.post("/exitQuiz", auth, function(req, res){
     res.redirect("/");
