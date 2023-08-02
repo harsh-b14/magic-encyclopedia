@@ -101,7 +101,7 @@ transition: transform 0.5s;
 }
 
 .form{
-  z-index: 11;
+  /* z-index: 11; */
 }
 
 .checkbox{
@@ -482,16 +482,17 @@ background-color: #0d141e;
 padding: 66px 60px;
 position: relative;
 bottom: 0;
+/* z-index: -8; */
 }
 .featured .featured__panel {
 background-color: #0d141e;
 }
 div.featured .featured__frame {
-position: relative;
+/* position:absolute; */
 top: 20px;
 bottom: 20px; 
 left: 20px;
-right: 20px;
+right:20px;
 z-index: -1;
 /* width: 0px; */
 }

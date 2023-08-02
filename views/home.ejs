@@ -98,7 +98,7 @@
             <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px" >
           </div>
           <div class="parent-creature">
-            <img class="image1-creature reveal"src="./images/hi3.jpg" alt="Dragon" width="233px" height="292px">
+            <img class="image1-creature reveal"src="./images/hii3.jpg" alt="Dragon" width="233px" height="292px">
             <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px" >
           </div>
 
@@ -126,7 +126,7 @@
     </div>
     <div class="header reveal" id="Quiz-&-Puzzle" >
           <h1 class="Creature"  style="font-family: 'Sacramento';font-size: 80px;color:rgb(255, 255, 255);padding-bottom:0%">Quiz & Puzzles</h1> </div>
-        <div class="container reveal" style="display: flex; flex-direction:row;">
+        <div class="container2 reveal" style="display: flex; flex-wrap:wrap; justify-content:center;align-content:center">
           <form action="/creatureQuiz" method="post" style="margin-right: 5%;float:left">
           <button id ="myButton">
             <div class="Frame1 ">
@@ -218,38 +218,62 @@
         <div class="media-scroller">
           <!--   Group 1 -->
           <div class="media-group" id="group-1">
-            <form action="/gryffindor" method="get">
-                <button id="Frame1" type="submit"> 
+            <form>
+                <button id="Frame1"> 
                     <div class="media-element">
                         <img src="./images/Frame 11.svg" alt="" />
                     </div>
                 </button>
             </form>
-            <form action="/hufflepuff" method="get">
-                <button id="Frame2" type="submit"> 
+            <script type="text/javascript">
+                document.getElementById("Frame1").onclick = function () {
+                    location.href = "index.html";
+                };
+            </script>
+
+            <form>
+                <button id="Frame2"> 
                     <div class="media-element">
                         <img src="./images/Frame 21.svg" alt="" />
                     </div>
                 </button>
             </form>
-
+            <script type="text/javascript">
+                document.getElementById("Frame2").onclick = function () {
+                    location.href = "index.html";
+                };
+            </script>
+            
+            
+            
           </div>
           <!-- Group 2   -->
           <div class="media-group" id="group-2">
-            <form action="/ravenclaw" method="get">
-                <button id="Frame3" type="submit"> 
+            <form>
+                <button id="Frame3"> 
                     <div class="media-element">
                         <img src="./images/Frame 31.svg" alt="" />
                     </div>
                 </button>
             </form>
-            <form action="/slytherin" method="get">
-                <button id="Frame4" type="submit"> 
+            <script type="text/javascript">
+                document.getElementById("Frame3").onclick = function () {
+                    location.href = "index.html";
+                };
+            </script>
+            <form>
+                <button id="Frame4"> 
                     <div class="media-element">
                         <img src="./images/Frame 41.svg" alt="" />
                     </div>
                 </button>
             </form>
+            <script type="text/javascript">
+                document.getElementById("Frame4").onclick = function () {
+                    location.href = "index.html";
+                };
+            </script>
+                      
             </div>
         </div>
            
@@ -264,41 +288,41 @@
             </div>
         </div>
         <div class="Desktop1" style="width: 100%;  position: relative;display:flex;flex-direction:column ">
-            <div class="container reveal" style="width:100%;">
-                <div class="Rectangle1" style="width: 100%; display:flex; flex-direction:column ;left: 0px; top: 0px; position: relative; background: linear-gradient(90deg, #37040F 0%, #6B2B2B 46%, rgba(31.66, 19.39, 19.39, 0.27) 100%); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset ; display:flex; flex-direction:row">
-                <img class="Gryffindor1" style="width: 45%;flex:45%;  left: 0px; top: 0px; position:relative" src="./images/Gryffindor.png" />
-                <div class="info-div" style="width: 55%;flex:55%;  position: relative">
-                    <div class="Gryffindor trans" style="width: 90%;vertical-align: middle;  left: 5%; position: relative; text-align: center;  color: white; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Gryffindor is known for its brave and courageous members. The house was founded by Godric Gryffindor and values traits such as chivalry, daring, and nerve. Gryffindor students are often known for their bravery and willingness to stand up for what is right. Notable members of Gryffindor include Harry Potter, Hermione Granger, and Ron Weasley.</div>
+            <div class="container reveal " style="width:100%;">
+                <div class="Rectangle1" >
+                <img class="Gryffindor1"  src="./images/Gryffindor.png" />
+                <div class="info-div" >
+                    <div class="trans" >Gryffindor is known for its brave and courageous members. The house was founded by Godric Gryffindor and values traits such as chivalry, daring, and nerve. Gryffindor students are often known for their bravery and willingness to stand up for what is right. Notable members of Gryffindor include Harry Potter, Hermione Granger, and Ron Weasley.</div>
                 </div>
             </div>
             </div>
             <div class="container reveal" style="width:100%">
-                <div class="Rectangle2" style="width: 100%; display:flex;flex-direction:column ; left: 0px; top: 0px; position: relative; background: linear-gradient(270deg, #0D2B2B 0%, rgba(33, 69, 67, 0.81) 62%, rgba(31.66, 19.39, 19.39, 0.25) 100%); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; display:flex; flex-direction:row;flex-wrap: wrap;">              
-                    <div class="info-div" style="width: 55%; position: relative">
-                        <div class="Slytherin trans" style="width: 90%;  left: 5%; justify-content:center;align-items:center; position: relative; text-align: center; color: white; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Slytherin is known for its ambitious, cunning, and resourceful members. It was founded by Salazar Slytherin. Slytherin students are often associated with the desire for power and success. They value ambition and can be highly determined in achieving their goals. Notable members of Slytherin include Draco Malfoy and Severus Snape.</div>               
+                <div class="Rectangle2 " >              
+                    <div class="info-div" >
+                        <div class="trans" >Slytherin is known for its ambitious, cunning, and resourceful members. It was founded by Salazar Slytherin. Slytherin students are often associated with the desire for power and success. They value ambition and can be highly determined in achieving their goals. Notable members of Slytherin include Draco Malfoy and Severus Snape.</div>               
                     </div>
-                <img class="Slytherin1" style="width: 45%; flex:45%; left: 0px; top: 0px; position: relative;justify-content:flex-end" src="./images/Slytherin.png" />
+                <img class="Slytherin1" src="./images/Slytherin.png" />
                 
             </div>
             </div>
             <div class="container reveal" style="width:100%">
-                <div class="Rectangle3" style="width: 100%; display:flex;flex-direction:column ; left: 0px; top: 0px; position: relative; background: linear-gradient(270deg, rgba(31.66, 19.39, 19.39, 0.27) 0%, rgba(72, 53, 21, 0.84) 43%, #433115 100%); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset ; display:flex; flex-direction:row">
-                <img class="Hufflepuff1" style="width: 45%; flex:45%; left: 0px; top: 0px; position: relative" src="./images/Hufflepuff.png" />    
-                <div class="info-div" style="width: 55%;justify-content:center;align-items:center;  position: relative">
-                    <div class="Hufflepuff trans" style="width:90%;  left: 5%; justify-content:center;align-items:center; position: relative; text-align: center; color: white; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Hufflepuff is a house that values hard work, dedication, patience, loyalty, and fair play. It was founded by Helga Hufflepuff. Hufflepuff students are known for their kindness and inclusivity. They value friendship and are often loyal to their friends. Notable members of Hufflepuff include Cedric Diggory and Newt Scamander.</div>              
+                <div class="Rectangle3 " >
+                <img class="Hufflepuff1" src="./images/Hufflepuff.png" />    
+                <div class="info-div" >
+                    <div class="trans" >Hufflepuff is a house that values hard work, dedication, patience, loyalty, and fair play. It was founded by Helga Hufflepuff. Hufflepuff students are known for their kindness and inclusivity. They value friendship and are often loyal to their friends. Notable members of Hufflepuff include Cedric Diggory and Newt Scamander.</div>              
                 </div>
             </div>
             </div>
             <div class="container reveal" style="width:100%">
-                <div class="Rectangle4" style=" width: 100%;display:flex;flex-direction:column ; left: 0px; top: 0px; position: relative; background: linear-gradient(270deg, #111B27 0%, rgba(38, 54, 79, 0.77) 59%, rgba(31.66, 19.39, 19.39, 0.25) 100%); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset ; display:flex; flex-direction:row">      
-                    <div class="info-div" style="width: 55%;justify-content:center;align-items:center; left:0px;  position: relative">
-                        <div class="Ravenclaw trans" style="width: 90%; left: 5%; justify-content:center;align-items:center; position: relative; text-align: center; color: white; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Ravenclaw is the house of intelligence, creativity, wit, and wisdom. It was founded by Rowena Ravenclaw. Ravenclaw students are known for their pursuit of knowledge and their love for learning. They value intellect and are often seen as highly intelligent individuals. Notable members of Ravenclaw include Luna Lovegood and Cho Chang.</div>                   
+                <div class="Rectangle4" >      
+                    <div class="info-div" >
+                        <div class="trans" >Ravenclaw is the house of intelligence, creativity, wit, and wisdom. It was founded by Rowena Ravenclaw. Ravenclaw students are known for their pursuit of knowledge and their love for learning. They value intellect and are often seen as highly intelligent individuals. Notable members of Ravenclaw include Luna Lovegood and Cho Chang.</div>                   
                     </div>
-            <img class="Ravenclaw1" style="width: 45%; flex:45%; left: 0px; top: 0px; position: relative" src="./images/Ravenclaw.png" />
+            <img class="Ravenclaw1" src="./images/Ravenclaw.png" />
                 
             </div>
             </div>
-        </div>     
+        </div>       
     </div>
 </div>   
 <div id="shopify-section-footer" class="shopify-section reveal">

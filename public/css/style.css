@@ -79,9 +79,9 @@ html{
         margin-right: 50px;
     }
 
-.trans{
-    transition: transform 0.5s;
-}
+    .trans{
+        transition: transform 0.5s;width: 90%;  left: 5%; justify-content:center;align-items:center; position: relative; text-align: center; color: white; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word
+    }
 .trans:hover{
     cursor: pointer;
     transform: scale(1.1);
@@ -205,7 +205,11 @@ html{
          flex: 50%;
          max-width: 50%;
      }
+     .Rectangle1{
+        flex-direction: column;
+    }
  }
+ 
  
  @media screen and (max-width: 500px) {
      .column{
@@ -344,4 +348,128 @@ html{
 a{
     text-decoration: none;
     color: black;
+}
+
+/*House of Hogwart*/
+.Rectangle1{
+    width: 100%; 
+    left: 0px;
+    top: 0px; 
+    position: relative; 
+    background: linear-gradient(90deg, #37040F 0%, #6B2B2B 46%, rgba(31.66, 19.39, 19.39, 0.27) 100%); 
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset ; 
+    display:flex;
+    flex-direction:row
+}
+.Gryffindor1 {
+    width: 45%;flex:45%;  left: 0px; top: 0px; position:relative
+}
+.Slytherin1{
+    width: 45%; flex:45%; left: 0px; top: 0px; position: relative
+}
+.Hufflepuff1{
+    width: 45%; flex:45%; left: 0px; top: 0px; position: relative
+}
+.Ravenclaw1{
+    width: 45%; flex:45%; left: 0px; top: 0px; position: relative
+}
+.info-div{
+    width: 55%; flex:55%;  position: relative
+}
+.Rectangle2{
+    width: 100%; 
+    left: 0px; 
+    top: 0px; 
+    position: relative; 
+    background: linear-gradient(270deg, #0D2B2B 0%, rgba(33, 69, 67, 0.81) 62%, rgba(31.66, 19.39, 19.39, 0.25) 100%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; 
+    display:flex; 
+    flex-direction:row
+}
+.Rectangle3{
+    width: 100%;
+    left: 0px;
+    top: 0px; 
+    position: relative; 
+    background: linear-gradient(270deg, rgba(31.66, 19.39, 19.39, 0.27) 0%, rgba(72, 53, 21, 0.84) 43%, #433115 100%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset ; 
+    display:flex; 
+    flex-direction:row
+}
+.Rectangle4{
+    width: 100%; 
+    left: 0px; 
+    top: 0px; 
+    position: relative; 
+    background: linear-gradient(270deg, #111B27 0%, rgba(38, 54, 79, 0.77) 59%, rgba(31.66, 19.39, 19.39, 0.25) 100%); 
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset ; 
+    display:flex; 
+    flex-direction:row
+}
+
+
+@media (max-width: 800px) {
+   
+    .Rectangle1{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 5%;
+        border-radius: 5%;
+   }
+   .Rectangle2{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 5%;
+    border-radius: 5%;
+   }
+   .Rectangle3{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+    border-radius: 5%;
+   }
+   .Rectangle4{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 5%;
+    border-radius: 5%;
+   }
+   .info-div{
+    width: 100%;
+    float: left;
+    
+   }
+   .trans{
+    width: 100%;
+    float: left;
+    left: 0%;
+    margin-bottom: 5%;
+    margin-top: 2%;
+   }
+   .trans:hover{
+    transform: none;
+   }
+   .Rectangle3{
+    display: flex;
+   }
+   .Rectangle4{
+    display:flex;
+   }
+   
+   .Ravenclaw1{
+    width: 100%;
+    border-radius: 5% 5% 0 0 ;
+   }
+   .Hufflepuff1{
+    width: 100%;
+    border-radius: 5% 5% 0 0 ;
+   }
+   .Slytherin1{
+    width: 100%;
+    border-radius: 5% 5% 0 0 ;
+   }
+   .Gryffindor1{
+    width: 100%;
+    border-radius: 5% 5% 0 0 ;
+   }
 }
