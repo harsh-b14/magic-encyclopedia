@@ -101,7 +101,7 @@ transition: transform 0.5s;
 }
 
 .form{
-  z-index: 11;
+  /* z-index: 11; */
 }
 
 .checkbox{
@@ -155,7 +155,7 @@ color: rgb(255, 255, 255);
     background-color: #e0e0e5;
   }
   input[type="search"] {
-    -webkit-appearance: none !important;
+    /* -webkit-appearance: none !important; */
     background-clip: padding-box;
     background-color: white;
     vertical-align: middle;
@@ -483,17 +483,14 @@ padding: 66px 60px;
 position: relative;
 bottom: 0;
 }
-.featured .featured__panel {
-background-color: #0d141e;
-}
+
 div.featured .featured__frame {
-position: relative;
+position:absolute;
 top: 20px;
 bottom: 20px; 
 left: 20px;
-right: 20px;
+right:20px;
 z-index: -1;
-/* width: 0px; */
 }
 div.featured .featured__frame .line.top {
 height: 1px;

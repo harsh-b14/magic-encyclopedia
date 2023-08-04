@@ -66,14 +66,14 @@
                 <div class="featured">
                   <div class="featured__wrapper"> 
                     <div class="featured__carousel ltr">  
-                       
+                      
                       <div class="featured__panel">
-
                         <form class="form" action="/favs" method="post"> 
                           <input class="checkbox" type="checkbox" name="checkbox" value="<%= item._id %>" onchange="this.form.submit()"/>
                           <h2 class="featured__title" style="color: white;"><%= item.name %></h2>
                           <p style="color: white;"><%= item.description %></p>  
                         </form>
+                        
                          
                         <div class="featured__frame"> 
                           <span class="line top"></span>
