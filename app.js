@@ -10,7 +10,7 @@ const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser')
-const { populate } = require('dotenv');
+const { populate } = require('dotenv'); 
 
 // making an express application
 const app = express();
@@ -31,7 +31,7 @@ app.use(cookieParser());
 // connecting to database
 main().catch(err => console.log(err)); 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/wizardingWorldDB");
+  await mongoose.connect(process.env.DBURL);
 }
 
 // creating an authorization middleware
@@ -40,7 +40,6 @@ const auth = async(req, res, next) => {
         const { userCookie } = req.cookies;
         if (!userCookie || userCookie === '') {
             res.send("<script>alert('Please login to access!');window.location = '/';</script>");
-            // return res.status(401).json({ message: 'Token not found, please login again!'});
         }
         else{
             jwt.verify(userCookie, process.env.SECRET_KEY, (err, decoded) => {
@@ -72,11 +71,11 @@ const signupSchema = new mongoose.Schema({
 const LoginDetail = new mongoose.model("LoginDetail", signupSchema);
 
 // creating schema to store info magical creatures into DB
-const creaturesSchema = new mongoose.Schema({
+const creaturesSchema = mongoose.Schema({
     name: {type: String, unique: true},
     description: String,
 });
-const Creature = new mongoose.model("Creature", creaturesSchema);
+const Creature = mongoose.model("Creature", creaturesSchema);
 
 // creating schema to store favourites of user into DB
 const favSchema = new mongoose.Schema({
@@ -93,25 +92,29 @@ const Favourite = new mongoose.model("Favourite", favSchema);
 
 
 app.get("/", async (req, res) => {
+    // Creature.insertMany(creatures).then(function(err){
+    //     if(!err){
+    //         console.log("Did not find any creatures, and saved default to DB.");
+    //     }
+    //     else{
+    //         console.log(err);
+    //     }
+    // });
     console.log("Get request recived!");
     try {
         const { userCookie } = req.cookies;
         console.log('userCookie: ', userCookie); // dev 
         if (!userCookie || userCookie === '') {
-            console.log(".");
             res.render("home", {btnValue: "Login" });
         }
         jwt.verify(userCookie, process.env.SECRET_KEY, (err, decoded) => {
           if (err) {
-            console.log("..", err);
             res.render("home", {btnValue: "Login" });
           }else{
-            console.log("....")
             res.render("home", {btnValue: decoded.username});
           }
         });
     } catch (err) {
-        console.log("err: ", err);
         res.render("home", {btnValue: "Login" });
     }
 });
@@ -187,7 +190,7 @@ app.post("/", async (req, res) => {
                 }
                 else{
                     const token = await jwt.sign({ email: existingUser.email, username: existingUser.username, _id: existingUser._id }, process.env.SECRET_KEY, {
-                        expiresIn: '600s'
+                        expiresIn: '24h'
                     });
                     res.cookie("userCookie", token);
                     res.render("home", { btnValue: existingUser.username });
@@ -214,7 +217,7 @@ app.post("/", async (req, res) => {
                     password: hashedPassword
                 });
                 const token = jwt.sign({ email: details.email, username: details.username, _id: details._id }, process.env.SECRET_KEY,{
-                    expiresIn: '1200s'
+                    expiresIn: '24h'
                 });
                 res.cookie("userCookie", token);                
                 res.render("home", { btnValue: details.username });
@@ -282,30 +285,12 @@ app.post("/exitQuiz", auth, function(req, res){
 
 app.listen(port, async () => {
     console.log("server running on " + port);
-    // const foundItem = await Creature.find({});
-    // if(foundItem.length == 0){
-    //     Creature.insertMany(creatures).then(function(err){
-    //         if(!err){
-    //             console.log("Did not find any creatures, and saved default to DB.");
-    //         }
-    //         else{
+    // Creature.insertMany(creatures).then(function(err){
+    //     if(!err){
+    //         console.log("Did not find any creatures, and saved default to DB.");
+    //     }
+    //     else{    
     //             console.log(err);
-    //         }
-    //     });
-    // }
-    // console.log(data);
-    // console.log("..............");
+    //     }
+    // });
 });
-
-
-
-// const sgMail = require('@sendgrid/mail');
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-// const msg = {
-//   to: 'test@example.com',
-//   from: 'test@example.com',
-//   subject: 'Sending with Twilio SendGrid is Fun',
-//   text: 'and easy to do anywhere, even with Node.js',
-//   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-// };
-// sgMail.send(msg);
