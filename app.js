@@ -23,10 +23,6 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname +  "/public"));
 app.use(express.json());
 app.use(cookieParser());
-// app.use((req, res, next)=>{
-//     console.log("HTTP Method - " + req.method + " , URL - " + req.url);
-//     next();
-// });
 
 // connecting to database
 main().catch(err => console.log(err)); 
@@ -92,18 +88,8 @@ const Favourite = new mongoose.model("Favourite", favSchema);
 
 
 app.get("/", async (req, res) => {
-    // Creature.insertMany(creatures).then(function(err){
-    //     if(!err){
-    //         console.log("Did not find any creatures, and saved default to DB.");
-    //     }
-    //     else{
-    //         console.log(err);
-    //     }
-    // });
-    console.log("Get request recived!");
     try {
         const { userCookie } = req.cookies;
-        console.log('userCookie: ', userCookie); // dev 
         if (!userCookie || userCookie === '') {
             res.render("home", {btnValue: "Login" });
         }
@@ -161,7 +147,6 @@ app.get("/user/:userName", auth, async (req, res) => {
 
 app.post("/login", async (req, res)=>{
     const btnValue = req.body.btn;
-    console.log(btnValue);
     if(btnValue === "Login"){
         res.redirect("/login");
     }
@@ -245,7 +230,6 @@ app.post("/search", async function(req, res){
     const creatureName = _.capitalize(req.body.creatureName);
     const foundItems = await Creature.find({name: {$regex : creatureName, $options: 'i'}});
     res.render("creature", {creatureList: foundItems});
-    console.log(foundItems);
 });
 
 app.post("/favs", auth, async(req, res) => {
@@ -255,7 +239,6 @@ app.post("/favs", auth, async(req, res) => {
     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
     const user = await Favourite.findOne({userId: verifyUser._id});
     if(!user || user === null){
-        console.log("entered into if");
         const userFavs = new Favourite({
             userId: verifyUser._id,
             favourites: [{
@@ -267,7 +250,6 @@ app.post("/favs", auth, async(req, res) => {
     }
     else{
         const item = await Favourite.find({userId: verifyUser._id, favourites:{$elemMatch:{creatureName: {$eq: creature.name}}}});
-        console.log(item);
         if(item.length == 0 || !item){
             const newItem = {
                 creatureName: creature.name
@@ -285,12 +267,4 @@ app.post("/exitQuiz", auth, function(req, res){
 
 app.listen(port, async () => {
     console.log("server running on " + port);
-    // Creature.insertMany(creatures).then(function(err){
-    //     if(!err){
-    //         console.log("Did not find any creatures, and saved default to DB.");
-    //     }
-    //     else{    
-    //             console.log(err);
-    //     }
-    // });
 });
