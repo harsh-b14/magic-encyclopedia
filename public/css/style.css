@@ -216,11 +216,13 @@ html{
      .Rectangle1{
         flex-direction: column;
     }
-    .svg-image{
-        margin-left: 0px;
-    }
+    
  }
- 
+ @media screen and (max-width: 900px){
+    /* .svg-image{
+        margin-left: 0px;
+    } */
+ }
  
  @media screen and (max-width: 500px) {
      .column{
@@ -367,23 +369,26 @@ a{
     width: 100%; 
     left: 0px;
     top: 0px; 
+    border-radius: 5%;
     position: relative; 
+
     background: linear-gradient(90deg, #37040F 0%, #6B2B2B 46%, rgba(31.66, 19.39, 19.39, 0.27) 100%); 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset ; 
     display:flex;
+    margin-bottom: 2%;
     flex-direction:row
 }
 .Gryffindor1 {
-    width: 45%;flex:45%;  left: 0px; top: 0px; position:relative
+    width: 45%;flex:45%;  left: 0px; top: 0px; position:relative; border-radius: 5% 0% 0 5%;
 }
 .Slytherin1{
-    width: 45%; flex:45%; left: 0px; top: 0px; position: relative
+    width: 45%; flex:45%; left: 0px; top: 0px; position: relative; border-radius: 0 5% 5% 0;
 }
 .Hufflepuff1{
-    width: 45%; flex:45%; left: 0px; top: 0px; position: relative
+    width: 45%; flex:45%; left: 0px; top: 0px; position: relative;border-radius: 5% 0% 0 5%;
 }
 .Ravenclaw1{
-    width: 45%; flex:45%; left: 0px; top: 0px; position: relative
+    width: 45%; flex:45%; left: 0px; top: 0px; position: relative;border-radius: 0 5% 5% 0;
 }
 .info-div{
     width: 55%; flex:55%;  position: relative
@@ -392,10 +397,12 @@ a{
     width: 100%; 
     left: 0px; 
     top: 0px; 
+    border-radius: 5%;
     position: relative; 
     background: linear-gradient(270deg, #0D2B2B 0%, rgba(33, 69, 67, 0.81) 62%, rgba(31.66, 19.39, 19.39, 0.25) 100%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; 
     display:flex; 
+    margin-bottom: 2%;
     flex-direction:row
 }
 .Rectangle3{
@@ -403,9 +410,11 @@ a{
     left: 0px;
     top: 0px; 
     position: relative; 
+    border-radius: 5%;
     background: linear-gradient(270deg, rgba(31.66, 19.39, 19.39, 0.27) 0%, rgba(72, 53, 21, 0.84) 43%, #433115 100%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset ; 
     display:flex; 
+    margin-bottom: 2%;
     flex-direction:row
 }
 .Rectangle4{
@@ -413,9 +422,11 @@ a{
     left: 0px; 
     top: 0px; 
     position: relative; 
+    border-radius: 5%;
     background: linear-gradient(270deg, #111B27 0%, rgba(38, 54, 79, 0.77) 59%, rgba(31.66, 19.39, 19.39, 0.25) 100%); 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset ; 
     display:flex; 
+    margin-bottom: 2%;
     flex-direction:row
 }
 
