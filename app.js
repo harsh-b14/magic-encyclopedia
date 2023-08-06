@@ -15,7 +15,7 @@ const { populate } = require('dotenv');
 // making an express application
 const app = express();
 
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 // letting express app use other module properties
 app.use(bodyParser.urlencoded({extended: true}));
@@ -103,7 +103,7 @@ app.get("/", async (req, res) => {
             }else{
                 console.log("else block");
                 res.render("home", {btnValue: decoded.username});
-          }
+            }
         });
         }
         console.log("try block end");
@@ -147,8 +147,14 @@ app.get("/user/:userName", auth, async (req, res) => {
     const token = req.cookies.userCookie;
     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
     const userFavs = await Favourite.findOne({userId: verifyUser._id});
-    const favList = userFavs.favourites; 
-    res.render("favourites", {favList: favList});
+    if(userFavs == null || !userFavs){
+        // res.render("favourites", {favList: null});
+        res.send("<script>alert('Please add favourites!');window.location = '/creatures';</script>");
+    }
+    else{
+        const favList = userFavs.favourites;
+        res.render("favourites", {favList: favList});
+    }
 });
 
 
@@ -274,6 +280,6 @@ app.post("/exitQuiz", auth, function(req, res){
     res.redirect("/");
 });
 
-app.listen(port, async () => {
-    console.log("server running on " + port);
+app.listen(PORT, async () => {
+    console.log("server running on " + PORT);
 });

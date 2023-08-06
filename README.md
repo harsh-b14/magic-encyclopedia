@@ -11,7 +11,6 @@ In adddition to this, wesite also contains some amazing features like quizz to r
 - Search bar functionality
 - Adding to favourites
 - List containing description of magical creatures and characters
-- 
 
 ## Usage
 
