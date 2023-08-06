@@ -136,7 +136,7 @@ app.get("/hufflepuff", auth, async(req, res) => {
 });
 
 app.get("/ravenclaw", auth, async(req, res) => {
-    res.sendFile(__dirname + "/Ravenclaw-house.html");
+    res.sendFile(__dirname + "/Ravenclaw-House.html");
 });
 
 app.get("/slytherin", auth, async(req, res) => {
