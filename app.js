@@ -144,23 +144,23 @@ app.get("/slytherin", auth, async(req, res) => {
 });
 
 app.get("/creatures/air", auth, async(req, res) => {
-    res.sendFile(__dirname + "/air.html");
+    res.sendFile(__dirname + "/Air.html");
 });
 
 app.get("/creatures/land", auth, async(req, res) => {
-    res.sendFile(__dirname + "/land.html");
+    res.sendFile(__dirname + "/Land.html");
 });
 
 app.get("/creatures/water", auth, async(req, res) => {
-    res.sendFile(__dirname + "/water.html");
+    res.sendFile(__dirname + "/Water.html");
 });
 
 app.get("/creatures/forest", auth, async(req, res) => {
-    res.sendFile(__dirname + "/forest.html");
+    res.sendFile(__dirname + "/Forest.html");
 });
 
 app.get("/creatures/fire", auth, async(req, res) => {
-    res.sendFile(__dirname + "/fire.html");
+    res.sendFile(__dirname + "/Fire.html");
 });
 
 app.get("/user/:userName", auth, async (req, res) => {
