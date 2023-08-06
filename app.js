@@ -174,7 +174,6 @@ app.post("/", async (req, res) => {
             const password = req.body.password; 
 
             const existingUser = await LoginDetail.findOne({ email: email, username: username});
-            console.log("checked for user in DB");
             if(existingUser === null || !existingUser){
                 res.send("<script>alert('Username of e-mail Id does not exist!');window.location = '/login';</script>");
             }
