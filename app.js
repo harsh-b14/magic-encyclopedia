@@ -28,6 +28,7 @@ app.use(cookieParser());
 main().catch(err => console.log(err)); 
 async function main() {
   await mongoose.connect(process.env.DBURL);
+  console.log("connected to the database");
 }
 
 // creating an authorization middleware
@@ -85,22 +86,30 @@ const favSchema = new mongoose.Schema({
 const Favourite = new mongoose.model("Favourite", favSchema);
 
 // all the get method 
-
-
 app.get("/", async (req, res) => {
     try {
+        console.log("try block");
         const { userCookie } = req.cookies;
         if (!userCookie || userCookie === '') {
+            console.log("if 1");
             res.render("home", {btnValue: "Login" });
         }
-        jwt.verify(userCookie, process.env.SECRET_KEY, (err, decoded) => {
-          if (err) {
-            res.render("home", {btnValue: "Login" });
-          }else{
-            res.render("home", {btnValue: decoded.username});
+        else{
+            console.log("if 1 exited");
+            jwt.verify(userCookie, process.env.SECRET_KEY, (err, decoded) => {
+            if (err) {
+                console.log("if 2");
+                res.render("home", {btnValue: "Login" });
+            }else{
+                console.log("else block");
+                res.render("home", {btnValue: decoded.username});
           }
         });
+        }
+        console.log("try block end");
     } catch (err) {
+        console.log("catch block");
+        console.log(err);
         res.render("home", {btnValue: "Login" });
     }
 });
@@ -165,7 +174,8 @@ app.post("/", async (req, res) => {
             const password = req.body.password; 
 
             const existingUser = await LoginDetail.findOne({ email: email, username: username});
-            if(existingUser === null){
+            console.log("checked for user in DB");
+            if(existingUser === null || !existingUser){
                 res.send("<script>alert('Username of e-mail Id does not exist!');window.location = '/login';</script>");
             }
             else{
