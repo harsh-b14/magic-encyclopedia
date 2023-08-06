@@ -75,9 +75,17 @@ html{
         margin-left: 30px;
         border-radius: 30%;
     }
-    .text-end{
-        margin-right: 50px;
-    }
+    /* .text-end{
+        margin-right: -30px;
+    } */
+    /* @media screen and (width : 750px){
+        .text-end{
+            margin-left: 50px;
+        }
+        .svg-image{
+            margin-left: 0px;
+        }
+    } */
 
     .trans{
         transition: transform 0.5s;width: 90%;  left: 5%; justify-content:center;align-items:center; position: relative; text-align: center; color: white; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word
@@ -208,6 +216,9 @@ html{
      .Rectangle1{
         flex-direction: column;
     }
+    .svg-image{
+        margin-left: 0px;
+    }
  }
  
  
@@ -216,6 +227,7 @@ html{
          flex: 100%;
          max-width: 100%;
      }
+     
  }
 
  /*style for quiz_template*/
