@@ -143,6 +143,26 @@ app.get("/slytherin", auth, async(req, res) => {
         res.sendFile(__dirname + "/Slytherin-house.html");
 });
 
+app.get("/creatures/air", auth, async(req, res) => {
+    res.sendFile(__dirname + "/Air.html");
+});
+
+app.get("/creatures/land", auth, async(req, res) => {
+    res.sendFile(__dirname + "/Land.html");
+});
+
+app.get("/creatures/water", auth, async(req, res) => {
+    res.sendFile(__dirname + "/Water.html");
+});
+
+app.get("/creatures/forest", auth, async(req, res) => {
+    res.sendFile(__dirname + "/Forest.html");
+});
+
+app.get("/creatures/fire", auth, async(req, res) => {
+    res.sendFile(__dirname + "/Fire.html");
+});
+
 app.get("/user/:userName", auth, async (req, res) => {
     const token = req.cookies.userCookie;
     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
