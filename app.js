@@ -9,8 +9,9 @@ const async = require("async");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const { populate } = require('dotenv'); 
+const creatureProfiles = require("./creatureProfile");
 
 // making an express application
 const app = express();
@@ -36,7 +37,8 @@ const auth = async(req, res, next) => {
     try {
         const { userCookie } = req.cookies;
         if (!userCookie || userCookie === '') {
-            res.send("<script>alert('Please login to access!');window.location = '/';</script>");
+            // res.send("<script>alert('Please login to access!');window.location = '/';</script>");
+            res.redirect("/login");
         }
         else{
             jwt.verify(userCookie, process.env.SECRET_KEY, (err, decoded) => {
@@ -48,9 +50,12 @@ const auth = async(req, res, next) => {
             next();
         }
     } catch (err) {
-        res.send("<script>alert('Please Login!');window.location = '/';</script>");
+        // res.send("<script>alert('Please Login!');window.location = '/';</script>");
+        res.redirect("/login");
     }
 }
+
+// pre-defined function
 
 // creaeting schema to store credential of users in DB
 const signupSchema = new mongoose.Schema({
@@ -84,6 +89,14 @@ const favSchema = new mongoose.Schema({
     ],
 });
 const Favourite = new mongoose.model("Favourite", favSchema);
+
+const creatureProfileSchema = new mongoose.Schema({
+    name: String,
+    details: [
+        String
+    ],
+});
+const CreatureProfile = new mongoose.model("CreatureProfile", creatureProfileSchema);
 
 // all the get method 
 app.get("/", async (req, res) => {
@@ -177,6 +190,44 @@ app.get("/user/:userName", auth, async (req, res) => {
     }
 });
 
+app.get("/creatures/air/:creatureName", auth, async(req, res) => {
+    const creatureName = req.params.creatureName;
+    const foundCreature = await CreatureProfile.findOne({name: creatureName});
+    // console.log("creature : " + foundCreature);
+    const details = await foundCreature.details;
+    // console.log("name of the creature : " + foundCreature.name);
+    // console.log("details of the creature : " + details);
+    res.render("creatureProfile", {creatureName: creatureName, details: details});
+});
+app.get("/creatures/land/:creatureName", auth, async(req, res) => {
+    const creatureName = req.params.creatureName;
+    const foundCreature = await CreatureProfile.findOne({name: creatureName});
+    console.log("creature : " + foundCreature);
+    const details = await foundCreature.details;
+    // console.log("name of the creature : " + foundCreature.name);
+    // console.log("details of the creature : " + details);
+    res.render("creatureProfile", {creatureName: creatureName, details: details});
+});
+app.get("/creatures/water/:creatureName", auth, async(req, res) => {
+    const creatureName = req.params.creatureName;
+    const foundCreature = await CreatureProfile.findOne({name: creatureName});
+    // console.log("creature : " + foundCreature);
+    const details = await foundCreature.details;
+    // console.log("name of the creature : " + foundCreature.name);
+    
+    // console.log("details of the creature : " + details);
+    res.render("creatureProfile", {creatureName: creatureName, details: details});
+});
+app.get("/creatures/forest/:creatureName", auth, async(req, res) => {
+    const creatureName = req.params.creatureName;
+    const foundCreature = await CreatureProfile.findOne({name: creatureName});
+    // console.log("creature : " + foundCreature);
+    const details = await foundCreature.details;
+    // console.log("name of the creature : " + foundCreature.name);
+    
+    // console.log("details of the creature : " + details);
+    res.render("creatureProfile", {creatureName: creatureName, details: details});
+});
 
 // all the post method
 
@@ -217,6 +268,8 @@ app.post("/", async (req, res) => {
                         expiresIn: '24h'
                     });
                     res.cookie("userCookie", token);
+                    // { expires: new Date(new Date().getTime()+24*60*60), httpOnly: true }
+                    console.log("cookies set!");
                     res.render("home", { btnValue: existingUser.username });
                 }
             }    
@@ -306,4 +359,27 @@ app.post("/exitQuiz", auth, function(req, res){
 
 app.listen(PORT, async () => {
     console.log("server running on " + PORT);
+    // console.log(creatureProfiles)
+    // const foundItems = await CreatureProfile.find({});
+    // if(foundItems.length == 0 || !foundItems){
+    //     CreatureProfile.insertMany(creatureProfiles).then(function(err){
+    //         if(err){
+    //             console.log("faced error : " + err);
+    //         }
+    //         else{
+    //             console.log("succesfully updated the collection");
+    //         }
+    //     });
+    // }
+    // else{
+    //     console.log("already inserted");
+    // }
+    // CreatureProfile.insertMany(creatureProfiles).then(function(err){
+    //     if(err){
+    //         console.log(err);
+    //     }
+    //     else{
+    //         console.log("succesfully updated the collection");
+    //     }
+    // });
 });

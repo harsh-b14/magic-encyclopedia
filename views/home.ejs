@@ -90,20 +90,28 @@
       <div class="right-side ">
         <div class="images-creature">
           <div class="parent-creature">
-            <img class="image1-creature reveal"src="./images/hi.jpg" alt="Dragon" width="233px" height="292px">
-            <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px" >
+            <a href="/creatures" >
+                <img class="image1-creature reveal"src="./images/hi.jpg" alt="Dragon" width="233px" height="292px">    
+                <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px" >
+            </a>
           </div>
           <div class="parent-creature">
-            <img class="image1-creature reveal"src="./images/hii2.jpg" alt="Dragon" width="233px" height="292px">
-            <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px"  >
+            <a href="/creatures">
+                <img class="image1-creature reveal"src="./images/hii2.jpg" alt="Dragon" width="233px" height="292px">
+                <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px"  >
+            </a>
           </div>
           <div class="parent-creature">
-            <img class="image1-creature reveal"src="./images/hi3.jpg" alt="Dragon" width="233px" height="292px">
-            <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px" >
+            <a href="/creatures">
+                <img class="image1-creature reveal"src="./images/hi3.jpg" alt="Dragon" width="233px" height="292px">
+                <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px" >
+            </a>
           </div>
           <div class="parent-creature">
-            <img class="image1-creature reveal"src="./images/hii3.jpg" alt="Dragon" width="233px" height="292px">
+            <a href="/creatures">
+                <img class="image1-creature reveal"src="./images/hii3.jpg" alt="Dragon" width="233px" height="292px">
             <img class ="frame1-creature" src="./images/Group 6 1.png" width="279px" >
+            </a>
           </div>
 
           
@@ -122,14 +130,15 @@
         </form>
 
       </div>
-      <script type="text/javascript">
+      <!-- <script type="text/javascript">
         document.getElementById("view-more").onclick = function () {
             location.href = "creature.ejs";
         };
-    </script>
+    </script> -->
     </div>
-    <div class="header reveal" id="Quiz-&-Puzzle" >
-          <h1 class="Creature"  style="font-family: 'Sacramento';font-size: 80px;color:rgb(255, 255, 255);padding-bottom:0%">Quiz & Puzzles</h1> </div>
+    <div class="header reveal" id="Quiz-&-Puzzle">
+          <h1 class="Creature" style="font-family: 'Sacramento';font-size: 80px;color:rgb(255, 255, 255);padding-bottom:0%">Quiz & Puzzles</h1> 
+        </div>
         <div class="container2 reveal" style="display: flex; flex-wrap:wrap; justify-content:center;align-content:center">
           <form action="/creatureQuiz" method="post" style="margin-right: 5%;float:left">
           <button id ="myButton">
@@ -215,7 +224,7 @@
           </div>
         </div>
 
-        <div class="header reveal" id="Characters">
+        <div class="header reveal" id="Characters" >
           <h1 style="font-family: 'Sacramento';font-size: 80px;color:rgb(255, 255, 255);font-weight:400">Characters</h1>
       </div>
       <div class="media-container reveal" >
@@ -333,6 +342,7 @@
 </script>  
 
 <script>
+
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
       
@@ -352,7 +362,6 @@
       window.addEventListener("scroll", reveal);
       
 </script>
-<!-- <script src="./app.js" charset="utf-8"></script> -->
 </body>
 
 </html>
