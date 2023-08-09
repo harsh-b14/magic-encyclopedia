@@ -37,6 +37,7 @@
     a.Search{
         color: black;
     }
+   
   </style>
 </head>
 
@@ -65,12 +66,14 @@
                   <input type="search" class="form-control form-control-dark text-bg-black" placeholder="Search..." aria-label="Search">
                 </form> -->
         
-                <div class="text-end">
+                <div class="text-end" style="display:flex; flex-direction:row">
                     <form action="/login" method="post">
-                        <button class="btn btn-warning me-2">
+                        <button class="btn btn-warning me-2" id="login">
                             <input type="submit" name="btn" value="<%= btnValue %>">
                         </button>
                     </form>
+
+                   
                 </div>
 
               </div>           

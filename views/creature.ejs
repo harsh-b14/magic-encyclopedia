@@ -27,6 +27,24 @@
       font-size: 16px;
       padding: 8px;
   }
+  .star {
+    visibility:hidden;
+    font-size:30px;
+    cursor:pointer;
+}
+.star:before {
+  content: "\2605";
+  position: absolute;
+  visibility:visible;
+  color:white;
+
+}
+.star:checked:before {
+  content: "\2606";
+  position: absolute;
+  color: white;
+
+}
   </style>
 </head>
 
@@ -85,8 +103,13 @@
                       
                       <div class="featured__panel">
                         <form class="form" action="/favs" method="post"> 
-                          <input class="checkbox" type="checkbox" name="checkbox" style="z-index:10;position:relative; float:right;"value="<%= item._id %>" onchange="this.form.submit()"/>
+                          <div style="float:right">
+                            <input class="star" type="checkbox" name="checkbox" style="z-index:10;position:relative; float:right;"value="<%= item._id %>" id="<%= item._id %>" onchange="this.form.submit()"
+                            />
+                          <label for="<%= item._id %>"> Add to Favourite </label>
+                          </div>
                           
+                                                   
                           <br/>
                           <h2 class="featured__title" style="color: white;"><%= item.name %></h2>
                           <p style="color: white;"><%= item.description %></p>  

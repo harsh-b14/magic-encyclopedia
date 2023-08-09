@@ -191,6 +191,10 @@ app.post("/login", async (req, res)=>{
     }
 });
 
+// if(btnValue !== "Login"){
+//     document.getElementById('Logout').style.visibility= hidden;
+// }
+
 // post method to login or signup using JWT
 app.post("/", async (req, res) => {
         const btnValue = req.body.btn;
