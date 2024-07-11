@@ -18,18 +18,13 @@
 </head>
 
 <body >       
-    
-
-            <div class="header-background">           
+        <div class="header-background">           
         <header class="p-2 text-bg-dark-opacity-0  "   >
-            
               <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <form action="/" method="post">
-                
                     <a href="/" class="d-flex align-items-center pr-2 mb-lg-0 text-white text-decoration-none">
                       <img src="../images/white-logo.png" class="svg-image" alt=""width="60" height="50" role="img" aria-label="Bootstrap" >
                     </a>
-                  
                 </form>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li id="#"></li>
@@ -44,7 +39,6 @@
               </div>           
           </header>
             </div>
-   
             <div class="container2 ">
               <div id="creature-container"></div>
                 <% favList.forEach(item => { %>
@@ -52,15 +46,10 @@
                 <div class="featured">
                   <div class="featured__wrapper"> 
                     <div class="featured__carousel ltr">  
-                       
                       <div class="featured__panel">
-
                         <form class="form" action="/delete" method="post"> 
-                          <!-- <input class="checkbox" type="checkbox" name="checkbox" value="<%= item.creatureId %>" onchange="this.form.submit()"/> -->
                           <h2 class="featured__title" style="color: white;"><%= item.creatureName %></h2>
-                          <!-- <p style="color: white;"><%= item.description %></p>   -->
                         </form>
-                         
                         <div class="featured__frame"> 
                           <span class="line top"></span>
                           <span class="line left"></span>
@@ -70,8 +59,7 @@
                           <span class="square tr"></span>
                           <span class="square bl"></span>
                           <span class="square br"></span>
-                        </div>
-                                 
+                        </div>       
                         </div>                        
                     </div>                    
                   </div>                  
@@ -83,12 +71,10 @@
         <script>
           function reveal() {
               var reveals = document.querySelectorAll(".reveal");
-            
               for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
                 var elementVisible = 150;
-            
                 if (elementTop < windowHeight - elementVisible) {
                   reveals[i].classList.add("active");
                 } else {
@@ -96,9 +82,7 @@
                 }
               }
             }
-            
             window.addEventListener("scroll", reveal);
-            
       </script> 
 
         <div id="shopify-section-footer" class="shopify-section reveal">
@@ -112,9 +96,8 @@
           </div>
           </footer>
         </div>
-        <script>
-          // frontend/script.js
-
+        
+<script>
 const searchInput = document.getElementById('searchInput');
 const autocompleteList = document.getElementById('autocompleteList');
 
@@ -156,7 +139,6 @@ autocompleteList.addEventListener('click', (event) => {
     autocompleteList.innerHTML = '';
   }
 });
-
-        </script>
+</script>
 </body>
 </html>

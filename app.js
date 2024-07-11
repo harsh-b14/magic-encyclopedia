@@ -25,19 +25,16 @@ app.use(express.static(__dirname +  "/public"));
 app.use(express.json());
 app.use(cookieParser());
 
-// connecting to database
 main().catch(err => console.log(err)); 
 async function main() {
   await mongoose.connect(process.env.DBURL);
   console.log("connected to the database");
 }
 
-// creating an authorization middleware
 const auth = async(req, res, next) => {
     try {
         const { userCookie } = req.cookies;
         if (!userCookie || userCookie === '') {
-            // res.send("<script>alert('Please login to access!');window.location = '/';</script>");
             res.redirect("/login");
         }
         else{
@@ -50,14 +47,10 @@ const auth = async(req, res, next) => {
             next();
         }
     } catch (err) {
-        // res.send("<script>alert('Please Login!');window.location = '/';</script>");
         res.redirect("/login");
     }
 }
 
-// pre-defined function
-
-// creaeting schema to store credential of users in DB
 const signupSchema = new mongoose.Schema({
     name : String,
     email: {
@@ -72,14 +65,12 @@ const signupSchema = new mongoose.Schema({
 });
 const LoginDetail = new mongoose.model("LoginDetail", signupSchema);
 
-// creating schema to store info magical creatures into DB
 const creaturesSchema = mongoose.Schema({
     name: {type: String, unique: true},
     description: String,
 });
 const Creature = mongoose.model("Creature", creaturesSchema);
 
-// creating schema to store favourites of user into DB
 const favSchema = new mongoose.Schema({
     userId: {type: mongoose.Schema.Types.ObjectId, ref: 'LoginDetail', unique: true},
     favourites:[
@@ -98,31 +89,22 @@ const creatureProfileSchema = new mongoose.Schema({
 });
 const CreatureProfile = new mongoose.model("CreatureProfile", creatureProfileSchema);
 
-// all the get method 
 app.get("/", async (req, res) => {
     try {
-        console.log("try block");
         const { userCookie } = req.cookies;
         if (!userCookie || userCookie === '') {
-            console.log("if 1");
             res.render("home", {btnValue: "Login" });
         }
         else{
-            console.log("if 1 exited");
             jwt.verify(userCookie, process.env.SECRET_KEY, (err, decoded) => {
             if (err) {
-                console.log("if 2");
                 res.render("home", {btnValue: "Login" });
             }else{
-                console.log("else block");
                 res.render("home", {btnValue: decoded.username});
             }
         });
         }
-        console.log("try block end");
     } catch (err) {
-        console.log("catch block");
-        console.log(err);
         res.render("home", {btnValue: "Login" });
     }
 });
@@ -181,7 +163,6 @@ app.get("/user/:userName", auth, async (req, res) => {
     const verifyUser = await jwt.verify(token, process.env.SECRET_KEY);
     const userFavs = await Favourite.findOne({userId: verifyUser._id});
     if(userFavs == null || !userFavs){
-        // res.render("favourites", {favList: null});
         res.send("<script>alert('Please add favourites!');window.location = '/creatures';</script>");
     }
     else{
@@ -193,43 +174,27 @@ app.get("/user/:userName", auth, async (req, res) => {
 app.get("/creatures/air/:creatureName", auth, async(req, res) => {
     const creatureName = req.params.creatureName;
     const foundCreature = await CreatureProfile.findOne({name: creatureName});
-    // console.log("creature : " + foundCreature);
     const details = await foundCreature.details;
-    // console.log("name of the creature : " + foundCreature.name);
-    // console.log("details of the creature : " + details);
     res.render("creatureProfile", {creatureName: creatureName, details: details});
 });
 app.get("/creatures/land/:creatureName", auth, async(req, res) => {
     const creatureName = req.params.creatureName;
     const foundCreature = await CreatureProfile.findOne({name: creatureName});
-    console.log("creature : " + foundCreature);
     const details = await foundCreature.details;
-    // console.log("name of the creature : " + foundCreature.name);
-    // console.log("details of the creature : " + details);
     res.render("creatureProfile", {creatureName: creatureName, details: details});
 });
 app.get("/creatures/water/:creatureName", auth, async(req, res) => {
     const creatureName = req.params.creatureName;
     const foundCreature = await CreatureProfile.findOne({name: creatureName});
-    // console.log("creature : " + foundCreature);
     const details = await foundCreature.details;
-    // console.log("name of the creature : " + foundCreature.name);
-    
-    // console.log("details of the creature : " + details);
     res.render("creatureProfile", {creatureName: creatureName, details: details});
 });
 app.get("/creatures/forest/:creatureName", auth, async(req, res) => {
     const creatureName = req.params.creatureName;
     const foundCreature = await CreatureProfile.findOne({name: creatureName});
-    // console.log("creature : " + foundCreature);
     const details = await foundCreature.details;
-    // console.log("name of the creature : " + foundCreature.name);
-    
-    // console.log("details of the creature : " + details);
     res.render("creatureProfile", {creatureName: creatureName, details: details});
 });
-
-// all the post method
 
 app.post("/login", async (req, res)=>{
     const btnValue = req.body.btn;
@@ -237,16 +202,10 @@ app.post("/login", async (req, res)=>{
         res.redirect("/login");
     }
     else{
-        // will display user profile page
         res.redirect("/user/" + btnValue);
     }
 });
 
-// if(btnValue !== "Login"){
-//     document.getElementById('Logout').style.visibility= hidden;
-// }
-
-// post method to login or signup using JWT
 app.post("/", async (req, res) => {
         const btnValue = req.body.btn;
         if (btnValue == "Login") {
@@ -268,8 +227,6 @@ app.post("/", async (req, res) => {
                         expiresIn: '24h'
                     });
                     res.cookie("userCookie", token);
-                    // { expires: new Date(new Date().getTime()+24*60*60), httpOnly: true }
-                    console.log("cookies set!");
                     res.render("home", { btnValue: existingUser.username });
                 }
             }    
@@ -359,27 +316,4 @@ app.post("/exitQuiz", auth, function(req, res){
 
 app.listen(PORT, async () => {
     console.log("server running on " + PORT);
-    // console.log(creatureProfiles)
-    // const foundItems = await CreatureProfile.find({});
-    // if(foundItems.length == 0 || !foundItems){
-    //     CreatureProfile.insertMany(creatureProfiles).then(function(err){
-    //         if(err){
-    //             console.log("faced error : " + err);
-    //         }
-    //         else{
-    //             console.log("succesfully updated the collection");
-    //         }
-    //     });
-    // }
-    // else{
-    //     console.log("already inserted");
-    // }
-    // CreatureProfile.insertMany(creatureProfiles).then(function(err){
-    //     if(err){
-    //         console.log(err);
-    //     }
-    //     else{
-    //         console.log("succesfully updated the collection");
-    //     }
-    // });
 });

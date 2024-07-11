@@ -49,28 +49,20 @@
 </head>
 
 <body >       
-    
-
             <div class="header-background">           
         <header class="text-bg-dark-opacity-0  "   >
             
               <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <form action="/" method="post">
-                
                     <a href="/" class="d-flex align-items-center pr-2 mb-lg-0 text-white text-decoration-none">
                       <img src="../images/white-logo.png" class="svg-image" alt=""width="70" height="60" role="img" aria-label="Bootstrap" >
                     </a>
-                  
                 </form>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="margin-left: 0px; ">
                   <li><a href="../creatures/air" class="nav-link first px-2 text-white ml-3" style="font-size: 18px;">Air</a></li>
                   <li><a href="../creatures/land" class="nav-link px-2 text-white " style="font-size: 18px;">Land</a></li>
                   <li><a href="../creatures/water" class="nav-link px-2 text-white" style="font-size: 18px;">Water</a></li>
                   <li><a href="../creatures/forest" class="nav-link px-2 text-white" style="font-size: 18px;">Forest</a></li>
-                  <!-- <li><a href="../creatures/fire" class="nav-link px-2 text-white">Fire</a></li> -->
-                    <!-- <h2 class="Title-magical-creature" style="text-align: center;">
-                        Magical Creature
-                    </h2> -->
                 </ul>
                 <div class="wrapper" style="margin: 0px;">
                   <div class="container autocomplete" style="margin:20px">
@@ -87,12 +79,9 @@
               </div>           
           </header>
             </div>
-
             <div class="Title-magical-creature" id="Creature" style="align-items:center; display:flex; justify-content:center; ">
               <h3 style="font-size:80px; margin:2%"> Magical Creature</h3>
           </div>
-
-   
             <div class="container2 ">
               <div id="creature-container"></div>
                   <% creatureList.forEach(item => { %>
@@ -107,15 +96,11 @@
                             <input class="star" type="checkbox" name="checkbox" style="z-index:10;position:relative; float:right;"value="<%= item._id %>" id="<%= item._id %>" onchange="this.form.submit()"
                             />
                           <label for="<%= item._id %>"> Add to Favourite </label>
-                          </div>
-                          
-                                                   
+                          </div>                        
                           <br/>
                           <h2 class="featured__title" style="color: white;"><%= item.name %></h2>
                           <p style="color: white;"><%= item.description %></p>  
                         </form>
-                        
-                         
                         <div class="featured__frame"> 
                           <span class="line top"></span>
                           <span class="line left"></span>
@@ -125,8 +110,7 @@
                           <span class="square tr"></span>
                           <span class="square bl"></span>
                           <span class="square br"></span>
-                        </div>
-                                 
+                        </div>      
                         </div>                        
                     </div>                    
                   </div>                  
@@ -134,7 +118,6 @@
               </div>
             <% }) %>
         </div>
-
         <script>
           function reveal() {
               var reveals = document.querySelectorAll(".reveal");
@@ -153,9 +136,7 @@
             }
             
             window.addEventListener("scroll", reveal);
-            
       </script> 
-
         <div id="shopify-section-footer" class="shopify-section reveal">
           <footer class="footer lazy-bg loaded">         
             <div class="footer__wrapper">
@@ -167,9 +148,7 @@
           </div>
           </footer>
         </div>
-        <script>
-          // frontend/script.js
-
+<script>
 const searchInput = document.getElementById('searchInput');
 const autocompleteList = document.getElementById('autocompleteList');
 
@@ -211,8 +190,7 @@ autocompleteList.addEventListener('click', (event) => {
     autocompleteList.innerHTML = '';
   }
 });
-
-        </script>
+</script>
 </body>
 </html>
 

@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: row;
   object-fit: cover;
-  /* background-image: url(../images/smoke-background.webp); */
   justify-content: center;
 }
 
@@ -127,14 +126,11 @@ h1{
     .view-more{
       justify-content: center;
     }
-   
-     
 }
 @media screen and (max-width: 768px) {
   .container2 {
     flex-direction: column;
   }
-  
   .right-side {
     width: 100%;
     display: block;
@@ -148,8 +144,6 @@ h1{
       flex-wrap: wrap;
 
   }
-  
-  
   .li-creature{
     padding: 5px;
     list-style: none;
@@ -160,6 +154,4 @@ h1{
   .view-more{
     justify-content: center;
   }
-  
-   
 }

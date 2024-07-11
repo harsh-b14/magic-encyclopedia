@@ -4,6 +4,7 @@
   "description": "A potter-head website containing information about magical things in wizarding world.",
   "main": "index.js",
   "scripts": {
+    "build": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Henish Trada, Harsh Bhanderi\\",
