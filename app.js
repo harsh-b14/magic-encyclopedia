@@ -2,14 +2,17 @@ require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const creatures = require("./creatures");
 const data = require("./creatures");
-const async = require("async");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
 const creatureProfiles = require("./creatureProfile");
+const auth = require("./middleware/auth")
+const LoginDetail = require("./models/user");
+const Favourite = require("./models/favourite");
+const Creature = require("./models/creature");
+const CreatureProfile = require("./models/creatureProfile");
 
 const app = express();
 
@@ -26,64 +29,6 @@ async function main() {
   await mongoose.connect(process.env.DBURL);
   console.log("connected to the database");
 }
-
-const auth = async(req, res, next) => {
-    try {
-        const { userCookie } = req.cookies;
-        if (!userCookie || userCookie === '') {
-            res.redirect("/login");
-        }
-        else{
-            jwt.verify(userCookie, process.env.SECRET_KEY, (err, decoded) => {
-                if (err) {
-                  res.send("<script>alert('Invalid Token!');window.location = '/';</script>");
-                }
-                req.decoded = decoded;
-            });
-            next();
-        }
-    } catch (err) {
-        res.redirect("/login");
-    }
-}
-
-const signupSchema = new mongoose.Schema({
-    name : String,
-    email: {
-        type: String,
-        unique: true,
-    },
-    username: {
-        type: String,
-        unique: true,
-    },
-    password: String,
-});
-const LoginDetail = new mongoose.model("LoginDetail", signupSchema);
-
-const creaturesSchema = mongoose.Schema({
-    name: {type: String, unique: true},
-    description: String,
-});
-const Creature = mongoose.model("Creature", creaturesSchema);
-
-const favSchema = new mongoose.Schema({
-    userId: {type: mongoose.Schema.Types.ObjectId, ref: 'LoginDetail', unique: true},
-    favourites:[
-        {
-            creatureName: String,
-        },
-    ],
-});
-const Favourite = new mongoose.model("Favourite", favSchema);
-
-const creatureProfileSchema = new mongoose.Schema({
-    name: String,
-    details: [
-        String
-    ],
-});
-const CreatureProfile = new mongoose.model("CreatureProfile", creatureProfileSchema);
 
 app.get("/", async (req, res) => {
     try {
@@ -203,6 +148,7 @@ app.post("/login", async (req, res)=>{
 });
 
 app.post("/", async (req, res) => {
+    // loginOrSignupUser(req, res);
         const btnValue = req.body.btn;
         if (btnValue == "Login") {
             const email = req.body.email;

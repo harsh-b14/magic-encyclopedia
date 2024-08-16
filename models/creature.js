@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 
-const creatureProfileSchema = new mongoose.Schema({
-    name: String,
-    details: [
-        String
-    ],
+const creaturesSchema = mongoose.Schema({
+    name: {
+        type: String, 
+        unique: true
+    },
+    description: String,
 });
 
-const CreatureProfile = new mongoose.model("CreatureProfile", creatureProfileSchema);
+const Creature = mongoose.model("Creature", creaturesSchema);
 
-module.exports = CreatureProfile;
+module.exports = Creature;
