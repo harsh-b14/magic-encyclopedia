@@ -1,4 +1,3 @@
-//importing required modules
 require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -10,15 +9,12 @@ const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
-const { populate } = require('dotenv'); 
 const creatureProfiles = require("./creatureProfile");
 
-// making an express application
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// letting express app use other module properties
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname +  "/public"));
